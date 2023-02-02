@@ -1,6 +1,10 @@
+local lovebird = require "libs.lovebird"
+--Call update immediately to not miss any prints from the creation of objects or importing of files.
+lovebird:update()
+				
 local Game = require "core.Game"
 
-local GAME_NAME = "gophwar"
+local GAME_NAME = "GophWar"
 local TARGET_WINDOW_W = 1024
 local TARGET_WINDOW_H = 720
 
@@ -11,6 +15,7 @@ function love.load()
 end
 
 function love.update(dt)
+	lovebird:update(dt)
 	game:update(dt)
 end
 

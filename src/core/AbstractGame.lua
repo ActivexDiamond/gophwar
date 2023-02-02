@@ -1,6 +1,8 @@
-local class = require "libs.cruxclass"
+local middleclass = require "libs.middleclass"
 
-local FiniteStateMachine = require "core.FiniteStateMachine"
+local Fsm = require "cat-paw.core.patterns.state.Fsm"
+
+local ApiHooks = require "core.ApiHooks"
 
 local suit = require "libs.suit"
 local Scheduler = require "utils.Scheduler"
@@ -21,15 +23,16 @@ local GameQuitEvent = require "evsys.os.GameQuitEvent"
 
 
 ------------------------------ Constructor ------------------------------
-
---TODO: Refactor to be FSM-based.
-local AbstractGame = class("AbstractGame", FiniteStateMachine)
-function AbstractGame:init(title)
+local AbstractGame = middleclass("AbstractGame", Fsm)
+function AbstractGame:initialize(title, targetWindowW, targetWindowH)
+	Fsm.initialize(self)
 	self.title = title or "Untitled Game"
-	--TODO: Proper ServiceLocator
-	--self.Scheduler = Scheduler
-	self:_hookLoveCallbacks()
-	self:_hookLibs()
+	love.window.setTitle(title)
+	self.WINDOW_W, self.WINDOW_H = love.window.setMode(targetWindowW,
+			targetWindowH)
+			
+	self.Scheduler = Scheduler
+	Api
 end
 
 ------------------------------ Constants ------------------------------

@@ -19,108 +19,91 @@ local WindowResizeEvent = require "evsys.os.WindowResizeEvent"
 local GameQuitEvent = require "evsys.os.GameQuitEvent"
 
 ------------------------------ Constructor ------------------------------
-local ApiHooks = class("LoveHooks")
-function ApiHooks:init(game)
-	self:_hookLoveCallbacks(game)
-	
-	self:_hookSuit()
-	self:_hookSuitCallbacks()
+local ApiHooks = class("ApiHooks")
+function ApiHooks:initialize()
+	error("Attempting to initialize static class!" .. ApiHooks)
+end
+
+------------------------------ API ------------------------------
+-- Can be any object (or even table) with `queue`, `load`, `tick`, and 
+-- `draw` methods. And optionally a `run` method.
+-- `load` can be nil with no issues. `tick` and `draw` can technically be null
+-- but logic will not process nor will anything be drawn.
+function ApiHooks.static.hookHandler(handler)
+	ApiHooks._hookLoveCallbacks(handler)
 end
 
 ------------------------------ Hooks ------------------------------
 ---------LoveEvents->Evsys
-function ApiHooks:_hookLoveCallbacks(game)
+function ApiHooks.static._hookLoveCallbacks(handler)
 	local wrap = ApiHooks._loveCallbackWrapper
 	--Game
-	if game.run then love.run = game.run 
+	if handler.run then love.run = handler.run 
 	else
-		love.load = game.load
-		love.update = game.tick
-		love.draw = game.draw
+		handler.load = handler.load
+		handler.update = handler.tick
+		handler.draw = handler.draw
 	end
 	--Evsys
-	love.keypressed = wrap(self.onKeyPressed)
-	love.keyreleased = wrap(self.onKeyReleased)
-	love.textinput = wrap(self.onTextInput)
+	love.keypressed = wrap(handler, ApiHooks._onKeyPressed)
+	love.keyreleased = wrap(handler, ApiHooks._onKeyReleased)
+	love.textinput = wrap(handler, ApiHooks.o_nTextInput)
 	
-	love.mousepressed = wrap(self.onMousePressed)
-	love.mousereleased = wrap(self.onMouseReleased)
-	love.mousemoved = wrap(self.onMouseMoved)
-	love.wheelmoved = wrap(self.onWheelMoved)
+	love.mousepressed = wrap(handler, ApiHooks._onMousePressed)
+	love.mousereleased = wrap(handler, ApiHooks._onMouseReleased)
+	love.mousemoved = wrap(handler, ApiHooks._onMouseMoved)
+	love.wheelmoved = wrap(handler, ApiHooks._onWheelMoved)
 	
-	love.focus = wrap(self.onWindowFocus)
-	love.resize = wrap(self.onWindowResize)
-	love.quit = wrap(self.onGameQuit)
-end
-
----------Suit
-function ApiHooks:_hookSuit()
-	--Convert widget.hit to return L/R/false button vs true/false.
-	local um = suit.updateMouse	
-	local s = GUI_SCALE	--TODO: Fetch GUI scale correctly.
-	function suit.updateMouse(self, x, y, button_down)
-		local m1, m2 = love.mouse.isDown(1), love.mouse.isDown(2)
-		local b = (m1 and 1 or 0) + (m2 and 2 or 0)
-		if b == 0 then b = false end
-		um(self, x/s, y/s, b)		
-	end
-end
-
-function ApiHooks:_hookSuitCallbacks()
-	local SuitHookDummy = class("SuitHookDummy"):include(IEventHandler)
-	SuitHookDummy:attach(KeyPressEvent, function(self, e)
-		suit.keypressed(e.k)
-	end)
-	SuitHookDummy:attach(TextInputEvent, function(self, e)
-		suit.textinput(e.char)
-	end)
+	love.focus = wrap(handler, ApiHooks._onWindowFocus)
+	love.resize = wrap(handler, ApiHooks._onWindowResize)
+	love.quit = wrap(handler, ApiHooks._onGameQuit)
 end
 
 ------------------------------ Helpers ------------------------------
-function ApiHooks:_loveCallbackWrapper(f)
+function ApiHooks.static._loveCallbackWrapper(handler, f)
 	return f and function(...) -- wrapper or nil 
-		return f(self, ...)
+		return f(handler, ...)
 	end
 end
 
 ------------------------------ Evsys ------------------------------
 
 ---------Keyboard
-function ApiHooks:onKeyPressed(k, code, isRepeat)
-	Evsys:queue(KeyPressEvent(k, code, isRepeat))
+function ApiHooks.static._onKeyPressed(handler, k, code, isRepeat)
+	handler:queue(KeyPressEvent(k, code, isRepeat))
 	suit.keypressed(k)
 end
-function ApiHooks:onKeyReleased(k, code, isRepeat)
-	Evsys:queue(KeyReleaseEvent(k, code, isRepeat))
+function ApiHooks.static._onKeyReleased(handler, k, code, isRepeat)
+	handler:queue(KeyReleaseEvent(k, code, isRepeat))
 end
-function ApiHooks:onTextInput(char)
-	Evsys:queue(TextInputEvent(char))
+function ApiHooks.static._onTextInput(handler, char)
+	handler:queue(TextInputEvent(char))
 	suit.textinput(char)
 end
 
 ---------Mouse
-function ApiHooks:onMousePressed(x, y, button, touch)
-	Evsys:queue(MousePressEvent(x, y, button, touch))
+function ApiHooks.static._onMousePressed(handler, x, y, button, touch)
+	handler:queue(MousePressEvent(x, y, button, touch))
 end
-function ApiHooks:onMouseReleased(x, y, button, touch)
-	Evsys:queue(MouseReleaseEvent(x, y, button, touch))
+function ApiHooks.static._onMouseReleased(handler, x, y, button, touch)
+	handler:queue(MouseReleaseEvent(x, y, button, touch))
 end
-function ApiHooks:onMouseMoved(x, y, dx, dy, touch)
-	Evsys:queue(MouseMoveEvent(x, y, dx, dy, touch))
+function ApiHooks.static._onMouseMoved(handler, x, y, dx, dy, touch)
+	handler:queue(MouseMoveEvent(x, y, dx, dy, touch))
 end
-function ApiHooks:onWheelMoved(x, y)
-	Evsys:queue(MouseWheelEvent(x, y))
+function ApiHooks.static._onWheelMoved(handler, x, y)
+	handler:queue(MouseWheelEvent(x, y))
 end
 
 ---------OS
-function ApiHooks:onWindowFocus(focus)
-	Evsys:queue(WindowFocusEvent(focus))
+function ApiHooks.static._onWindowFocus(handler, focus)
+	handler:queue(WindowFocusEvent(focus))
 end
-function ApiHooks:onWindowResize(w, h)
-	Evsys:queue(WindowResizeEvent(w, h))
+function ApiHooks.static._onWindowResize(handler, w, h)
+	handler:queue(WindowResizeEvent(w, h))
 end
-function ApiHooks:onGameQuit()
-	Evsys:queue(GameQuitEvent())
+function ApiHooks.static._onGameQuit(handler)
+	handler:queue(GameQuitEvent())
 end
 
 return ApiHooks()

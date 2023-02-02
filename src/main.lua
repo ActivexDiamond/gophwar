@@ -1,30 +1,20 @@
-require "prototype.main"
+local Game = require "core.Game"
 
---[[
------------------------------- libs ------------------------------
-local utils = require "libs.utils"
+local GAME_NAME = "gophwar"
+local TARGET_WINDOW_W = 1024
+local TARGET_WINDOW_H = 720
 
-local Slab = require "Slab"					--So it initializes.
-local Scheduler = require "libs.Scheduler"
+local game;
+function love.load()
+	game = Game(GAME_NAME, TARGET_WINDOW_W,
+			TARGET_WINDOW_H)
+end
 
-local SimulationContainer = require "SimulationContainer" 
-
------------------------------- Config Init ------------------------------
-
------------------------------- Simulation Init ------------------------------
-
------------------------------- Core API ------------------------------
 function love.update(dt)
-	SimulationContainer:tick(dt)
-	
-	Scheduler:tick(dt)
+	game:update(dt)
 end
 
 function love.draw()
-	local g = love.graphics
-	SimulationContainer:draw(g)
-	
-	Scheduler:draw(g)
+	local g2d = love.graphics
+	game:draw(g2d)
 end
-
---]]

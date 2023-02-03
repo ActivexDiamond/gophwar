@@ -5,8 +5,9 @@ local AssetRegistry = require "core.AssetRegistry"
 
 local Event = require "cat-paw.core.patterns.event.Event"
 --local EvMouse = require "cat-paw.core.patterns.event.mouse.EvMouse"
-
 local EvMouseMove = require "cat-paw.core.patterns.event.mouse.EvMouseMove"
+
+local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 
 ------------------------------ Helpers ------------------------------
 
@@ -15,7 +16,7 @@ local DummyObject = middleclass("DummyObject")
 function DummyObject:initialize()
 	--Not specifying which events will slow down the EventSystem as a whole,
 	--but not by a lot.
-	GAME:getEventSystem():attach(self, {Event})
+	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	self.ID = "iron_oreblock"
 	self.x, self.y = 32, 32
 	self.w, self.h = 320, 320
@@ -43,9 +44,9 @@ end
 ------------------------------ API ------------------------------
 
 ------------------------------ Callbacks ------------------------------
-DummyObject[Event] = function(self, e)
+DummyObject[EvMouseMove] = function(self, e)
 	--Those are too spammy.
-	if e.class == EvMouseMove then return end
+	--if e.class == EvMouseMove then return end
 	print("Got event: " .. tostring(e))
 end
 

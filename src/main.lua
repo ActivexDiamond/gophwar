@@ -1,4 +1,4 @@
---[[
+---[[
 io.stdout:setvbuf('no')			--Fix for some terminals not flushing properly with Lua.
 local lovebird = require "libs.lovebird"
 --Call update immediately to not miss any prints from the creation of objects or importing of files.
@@ -32,4 +32,4 @@ end
 
 --]]
 
-require "cat-paw-extras.quick-tests.overload.all"
+--require "cat-paw-extras.quick-tests.overload.all"

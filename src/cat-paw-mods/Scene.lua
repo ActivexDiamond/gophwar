@@ -11,38 +11,43 @@ function Scene:initialize()
 end
 
 ------------------------------ Core API ------------------------------
-function State:update(dt)
+function Scene:update(dt)
+	State.update(self, dt)
 	for obj, _ in pairs(self.objects) do
 		obj:update(dt)
 	end
 end
 
-function State:draw(g2d)
+function Scene:draw(g2d)
+	State.draw(self, g2d)
 	for obj, _ in pairs(self.objects) do
 		obj:draw(g2d)
 	end
 end
 
-function State:enter(from, ...)
+function Scene:enter(from, ...)
+	State.enter(self, from, ...)
 	for obj, _ in pairs(self.objects) do
 		if obj.onSceneEnter then obj:onSceneEnter(from, ...) end
 	end
 end
 
-function State:leave(to)
+function Scene:leave(to)
+	State.leave(self, to)
 	for obj, _ in pairs(self.objects) do
 		if obj.onSceneLeave then obj:onSceneLeave(to) end
 	end
 end
 
-function State:activate(fsm)
-	self.fsm = fsm
-		for obj, _ in pairs(self.objects) do
+function Scene:activate(fsm)
+	State.activate(self, fsm)
+	for obj, _ in pairs(self.objects) do
 		if obj.onSceneActivate then obj:onSceneActivate(fsm) end
 	end
 end
 
-function State:destroy()
+function Scene:destroy()
+	State.destroy(self)
 	for obj, _ in pairs(self.objects) do
 		if obj.onSceneDestroy then obj:onSceneDestroy() end
 	end

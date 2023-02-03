@@ -3,3 +3,11 @@ Exmaple:
 	enter -> onEnter
 	leave -> onLeave
 	destroy -> onDestroy
+	
+//Change direct references to parent with self.class.super
+//Important: Cannot be used in `initialize`
+Yeah, don't do that. Causes tons of stack overflows.
+Doesn't handle inheritance properly.
+
+change Fsm `add` to `addState` but then how would scenes work? just say addState?
+Wrap it behind a addScene?

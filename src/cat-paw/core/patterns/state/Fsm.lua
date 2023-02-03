@@ -22,18 +22,20 @@ end
 function Fsm:goTo(id, ...)
 	local state = self.states[id]
 	if not state then return false end
-	if self.currentState == state then return false end
+	if not state then 
+		error("Attempting to go to invalid state. Did you forget to add it, or is the ID wrong? id=" .. tostring(id)) 
+	end
 	
-	self.currentState:leave(state)
+	--Would be nil for the first call of `goTo`.
+	if self.currentState then self.currentState:leave(state) end
 	local previous = self.currentState
 	self.currentState = state
-	self.currentState:enter(previous, ...)
+	self.currentState.enter(self.currentState, previous, ...)
 	return true
 end
 
 function Fsm:add(id, state)
 	if self.states[id] then return false end
-	
 	self.states[id] = state
 	state:activate(self)
 	return true

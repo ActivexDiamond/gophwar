@@ -14,6 +14,7 @@ local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 local AbstractGame = middleclass("AbstractGame", Fsm)
 function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 	Fsm.initialize(self)
+		
 	self.title = title or "Untitled Game"
 	love.window.setTitle(title)
 	self.windowW, self.windowH = targetWindowW, targetWindowH

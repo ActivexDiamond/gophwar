@@ -24,4 +24,5 @@ function love.draw()
 	local g2d = love.graphics
 	GAME:draw(g2d)
 end
+
 --]]

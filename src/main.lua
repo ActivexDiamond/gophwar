@@ -12,8 +12,8 @@ DEBUG = {
 local Game = require "core.Game"
 
 local GAME_NAME = "GophWar"
-local TARGET_WINDOW_W = -1--1024
-local TARGET_WINDOW_H = -1--720
+local TARGET_WINDOW_W = 1024
+local TARGET_WINDOW_H = 720
 
 function love.load()
 	Game(GAME_NAME, TARGET_WINDOW_W,

@@ -11,11 +11,11 @@ local InGameScene = middleclass("InGameScene", Scene)
 function InGameScene:initialize(...)
 	Scene.initialize(self, ...)
 
-	self:addObject(Gopher("base_gopher", 100, 100, 32, 32))
+	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
 
 	local treeX = (GAME.windowW / 2) - (128 / 2)
 	local treeY = (GAME.windowH / 2) - (128 / 2)
-	self:addObject(DryadTree("drayd_tree", treeX, treeY, 128, 128))
+	self:addObject(DryadTree("drayd_tree", self, treeX, treeY, 128, 128))
 end
 
 ------------------------------ Core API ------------------------------

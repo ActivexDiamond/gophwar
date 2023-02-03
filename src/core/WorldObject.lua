@@ -9,8 +9,9 @@ local brinevector = require "libs.brinevector"
 
 ------------------------------ Constructor ------------------------------
 local WorldObject = middleclass("WorldObject", Object)
-function WorldObject:initialize(id, x, y, w, h)
+function WorldObject:initialize(id, scene, x, y, w, h)
 	Object.initialize(self, id)
+	self.scene = scene
 	self.pos = brinevector(x, y)
 	self.w, self.h = w, h
 	self.rotation = 0

@@ -7,7 +7,6 @@ local AbstractGame = require "core.AbstractGame"
 local Game = middleclass("Game")
 function Game:initialize(...)
 	AbstractGame.initialize(self, ...)
-	
 end
 
 ------------------------------ Core API ------------------------------

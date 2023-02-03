@@ -1,22 +1,17 @@
-local class = require "libs.cruxclass"
+local middleclass = require "libs.middleclass"
 
-local suit = require "libs.suit"
+local EvKeyPress = require "cat-paw.core.patterns.event.keyboard.EvKeyPress"
+local EvKeyRelease = require "cat-paw.core.patterns.event.keyboard.EvKeyRelease"
+local EvTextInput = require "cat-paw.core.patterns.event.keyboard.EvTextInput"
 
-local Evsys = require "evsys.Evsys"
-local IEventHandler = require "evsys.IEventHandler"
+local EvMousePress = require "cat-paw.core.patterns.event.mouse.EvMousePress"
+local EvMouseRelease = require "cat-paw.core.patterns.event.mouse.EvMouseRelease"
+local EvMouseMove = require "cat-paw.core.patterns.event.mouse.EvMouseMove"
+local EvMouseWheel = require "cat-paw.core.patterns.event.mouse.EvMouseWheel"
 
-local KeyPressEvent = require "evsys.input.KeyPressEvent"
-local KeyReleaseEvent = require "evsys.input.KeyReleaseEvent"
-local TextInputEvent = require "evsys.input.TextInputEvent"
-
-local MousePressEvent = require "evsys.input.MousePressEvent"
-local MouseReleaseEvent = require "evsys.input.MouseReleaseEvent"
-local MouseMoveEvent = require "evsys.input.MouseMoveEvent"
-local MouseWheelEvent = require "evsys.input.MouseWheelEvent"
-
-local WindowFocusEvent = require "evsys.os.WindowFocusEvent"
-local WindowResizeEvent = require "evsys.os.WindowResizeEvent"
-local GameQuitEvent = require "evsys.os.GameQuitEvent"
+local EvWindowFocus = require "cat-paw.core.patterns.event.os.EvWindowFocus"
+local EvWindowResize = require "cat-paw.core.patterns.event.os.EvWindowResize"
+local EvGameQuit = require "cat-paw.core.patterns.event.os.EvGameQuit"
 
 ------------------------------ Constructor ------------------------------
 local ApiHooks = class("ApiHooks")

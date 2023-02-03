@@ -21,9 +21,9 @@ function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
 	local spr, sx, sy = AssetRegistry:getSprObj(self)
 	g2d.setColor(1, 1, 1, 1)
-	g2d.draw(spr, self.x, self.y, 0, sx, sy)
+	g2d.draw(spr, self.pos.x, self.pos.y, 0, sx, sy)
 	if self.rect then
-		g2d.rectangle('line', self.x, self.y, self.w, self.h)
+		g2d.rectangle('line', self.pos.x, self.pos.y, self.w, self.h)
 	end
 end
 

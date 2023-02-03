@@ -15,7 +15,7 @@ function InGameScene:initialize(...)
 
 	local treeX = (GAME.windowW / 2) - (128 / 2)
 	local treeY = (GAME.windowH / 2) - (128 / 2)
-	self:addObject(DryadTree("dryad_tree", treeX, treeY, 128, 128))
+	self:addObject(DryadTree("drayd_tree", treeX, treeY, 128, 128))
 end
 
 ------------------------------ Core API ------------------------------

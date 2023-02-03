@@ -1,5 +1,6 @@
 local middleclass = require "libs.middleclass"
 
+
 local EvKeyPress = require "cat-paw.core.patterns.event.keyboard.EvKeyPress"
 local EvKeyRelease = require "cat-paw.core.patterns.event.keyboard.EvKeyRelease"
 local EvTextInput = require "cat-paw.core.patterns.event.keyboard.EvTextInput"
@@ -14,7 +15,7 @@ local EvWindowResize = require "cat-paw.core.patterns.event.os.EvWindowResize"
 local EvGameQuit = require "cat-paw.core.patterns.event.os.EvGameQuit"
 
 ------------------------------ Constructor ------------------------------
-local ApiHooks = class("ApiHooks")
+local ApiHooks = middleclass("ApiHooks")
 function ApiHooks:initialize()
 	error("Attempting to initialize static class!" .. ApiHooks)
 end
@@ -29,7 +30,7 @@ function ApiHooks.static.hookHandler(handler)
 end
 
 ------------------------------ Hooks ------------------------------
----------LoveEvents->Evsys
+---------LovEvents->Evsys
 function ApiHooks.static._hookLoveCallbacks(handler)
 	local wrap = ApiHooks._loveCallbackWrapper
 	--Game
@@ -47,7 +48,7 @@ function ApiHooks.static._hookLoveCallbacks(handler)
 	love.mousepressed = wrap(handler, ApiHooks._onMousePressed)
 	love.mousereleased = wrap(handler, ApiHooks._onMouseReleased)
 	love.mousemoved = wrap(handler, ApiHooks._onMouseMoved)
-	love.wheelmoved = wrap(handler, ApiHooks._onWheelMoved)
+	love.wheelmoved = wrap(handler, ApiHooks._onMouseWheel)
 	
 	love.focus = wrap(handler, ApiHooks._onWindowFocus)
 	love.resize = wrap(handler, ApiHooks._onWindowResize)
@@ -65,40 +66,38 @@ end
 
 ---------Keyboard
 function ApiHooks.static._onKeyPressed(handler, k, code, isRepeat)
-	handler:queue(KeyPressEvent(k, code, isRepeat))
-	suit.keypressed(k)
+	handler:queue(EvKeyPress(k, code, isRepeat))
 end
 function ApiHooks.static._onKeyReleased(handler, k, code, isRepeat)
-	handler:queue(KeyReleaseEvent(k, code, isRepeat))
+	handler:queue(EvKeyRelease(k, code, isRepeat))
 end
 function ApiHooks.static._onTextInput(handler, char)
-	handler:queue(TextInputEvent(char))
-	suit.textinput(char)
+	handler:queue(EvTextInput(char))
 end
 
 ---------Mouse
 function ApiHooks.static._onMousePressed(handler, x, y, button, touch)
-	handler:queue(MousePressEvent(x, y, button, touch))
+	handler:queue(EvMousePress(x, y, button, touch))
 end
 function ApiHooks.static._onMouseReleased(handler, x, y, button, touch)
-	handler:queue(MouseReleaseEvent(x, y, button, touch))
+	handler:queue(EvMouseRelease(x, y, button, touch))
 end
 function ApiHooks.static._onMouseMoved(handler, x, y, dx, dy, touch)
-	handler:queue(MouseMoveEvent(x, y, dx, dy, touch))
+	handler:queue(EvMouseMove(x, y, dx, dy, touch))
 end
-function ApiHooks.static._onWheelMoved(handler, x, y)
-	handler:queue(MouseWheelEvent(x, y))
+function ApiHooks.static._onMouseWheel(handler, x, y)
+	handler:queue(EvMouseWheel(x, y))
 end
 
 ---------OS
 function ApiHooks.static._onWindowFocus(handler, focus)
-	handler:queue(WindowFocusEvent(focus))
+	handler:queue(EvWindowFocus(focus))
 end
 function ApiHooks.static._onWindowResize(handler, w, h)
-	handler:queue(WindowResizeEvent(w, h))
+	handler:queue(EvWindowResize(w, h))
 end
 function ApiHooks.static._onGameQuit(handler)
-	handler:queue(GameQuitEvent())
+	handler:queue(EvGameQuit())
 end
 
-return ApiHooks()
+return ApiHooks

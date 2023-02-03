@@ -4,7 +4,7 @@ local Fsm = require "cat-paw.core.patterns.state.Fsm"
 local ApiHooks = require "core.ApiHooks"
 
 --local suit = require "libs.suit"
-local Scheduler = require "libs.Scheduler"
+local Scheduler = require "cat-paw.core.timing.Scheduler"
 
 local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 
@@ -19,7 +19,7 @@ function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 	self.windowW, self.windowH = targetWindowW, targetWindowH
 	love.window.setMode(targetWindowW, targetWindowH)
 			
-	self.Scheduler = Scheduler
+	self.scheduler = Scheduler()
 	self.eventSystem = EventSystem()
 	ApiHooks.hookHandler(self)
 end
@@ -27,6 +27,7 @@ end
 ------------------------------ Constants ------------------------------
 --This temp code for GUI scaling, and some configs for the Inventory code from cat-paw.
 --This should be placed somewhere more proper.
+AbstractGame.graphics = {}
 do
 	local g = AbstractGame.graphics
 	g.GUI_SCALE = 0.75
@@ -45,10 +46,10 @@ function AbstractGame:load(args)
 	print(self.title .. " loaded.")
 end
 
-function AbstractGame:tick(dt)
-	Fsm.tick(self, dt)
+function AbstractGame:update(dt)
+	Fsm.update(self, dt)
 	
-	self.scheduler:tick(dt)
+	self.scheduler:update(dt)
 	self.eventSystem:poll()
 end
 
@@ -58,6 +59,14 @@ function AbstractGame:draw(g2d)
 --	g.scale(AbstractGame.graphics.GUI_SCALE)
 --		if self.loadedWorld then self.loadedWorld:drawGui() end
 --	g.scale(1/AbstractGame.graphics.GUI_SCALE)
+end
+
+------------------------------ Other ------------------------------
+--Wrapper so AbstractGame can be directly passed to ApiHooks. Shouldn't be used anywhere else.
+--If you want to queue stuff, use game:getEventSystem():queue(event)
+--TODO: Find a better way to make this class an ApiHooks work nicely.
+function AbstractGame:queue(...)
+	self.eventSystem:queue(...)
 end
 
 ------------------------------ Getters / Setters ------------------------------

@@ -1,0 +1,5 @@
+Change State methods to follow callback conventions.
+Exmaple:
+	enter -> onEnter
+	leave -> onLeave
+	destroy -> onDestroy

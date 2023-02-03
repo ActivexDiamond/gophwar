@@ -6,7 +6,7 @@ local EvMouse = require "cat-paw.core.patterns.event.mouse.EvMouse"
 local EvMouseClick = require "cat-paw.core.patterns.event.mouse.EvMouseClick"
 local EvMousePress = require "cat-paw.core.patterns.event.mouse.EvMousePress"
 
-local inspect = require "quick-tests.event.inspect"
+--local inspect = require "quick-tests.event.inspect"
 
 ------------------------------ EventSystem ------------------------------
 local aSys = EventSystem()

@@ -1,3 +1,5 @@
+---[[
+io.stdout:setvbuf('no')			--Fix for some terminals not flushing properly with Lua.
 local lovebird = require "libs.lovebird"
 --Call update immediately to not miss any prints from the creation of objects or importing of files.
 lovebird:update()
@@ -9,7 +11,7 @@ local TARGET_WINDOW_W = 1024
 local TARGET_WINDOW_H = 720
 
 function love.load()
-	GAME = Game(GAME_NAME, TARGET_WINDOW_W,
+	Game(GAME_NAME, TARGET_WINDOW_W,
 			TARGET_WINDOW_H)
 end
 
@@ -22,3 +24,4 @@ function love.draw()
 	local g2d = love.graphics
 	GAME:draw(g2d)
 end
+--]]

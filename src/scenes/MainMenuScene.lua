@@ -1,6 +1,7 @@
 local middleclass = require "libs.middleclass"
 local Scene = require "cat-paw-mods.Scene"
 
+local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 local EvKeyPress = require "cat-paw.core.patterns.event.keyboard.EvKeyPress"
 
 local DummyObject = require "debugging.DummyObject"
@@ -11,6 +12,7 @@ local DummyObject = require "debugging.DummyObject"
 local MainMenuScene = middleclass("MainMenuScene", Scene)
 function MainMenuScene:initialize(...)
 	Scene.initialize(self, ...)
+	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	self:addObject(DummyObject())
 end
 

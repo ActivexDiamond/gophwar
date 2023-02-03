@@ -1,6 +1,5 @@
-data{"wood_chest",
-	cols = 3,
-	rows = 3,
+data{"base_gopher",
+	speed = 5,
 }
 data{"iron_chest",
 	cols = 6,

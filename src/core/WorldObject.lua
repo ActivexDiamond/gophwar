@@ -1,23 +1,31 @@
 local middleclass = require "libs.middleclass"
 local Object = require "core.Object"
 
+local AssetRegistry = require "core.AssetRegistry"
+
+local brinevector = require "libs.brinevector"
+
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
 local WorldObject = middleclass("WorldObject", Object)
----Can take (id, x, y) or (id, vector)
-function WorldObject:initialize(id, a, b)
+function WorldObject:initialize(id, x, y, w, h)
 	Object.initialize(self, id)
-	if b then
-		self.pos = brinevector(a, b)
-	else
-		assert(brinevector.isVector(a), "Invalid WorldObject initialization arguments. Must be either x/y or Vector2.")
-		self.pos = a:getCopy()
-	end
-	
+	self.pos = brinevector(x, y)
+	self.w, self.h = w, h
+	print('x', self.w, self.h)
 end
 
 ------------------------------ Core API ------------------------------
+function WorldObject:draw(g2d)
+	Object.draw(self, g2d)
+	local spr, sx, sy = AssetRegistry:getSprObj(self)
+	g2d.setColor(1, 1, 1, 1)
+	g2d.draw(spr, self.x, self.y, 0, sx, sy)
+	if self.rect then
+		g2d.rectangle('line', self.x, self.y, self.w, self.h)
+	end
+end
 
 ------------------------------ API ------------------------------
 

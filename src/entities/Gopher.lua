@@ -1,12 +1,12 @@
 local middleclass = require "libs.middleclass"
-local Object = require "core.Object"
+local WorldObject = require "core.WorldObject"
 
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Gopher = middleclass("Gopher", Object)
+local Gopher = middleclass("Gopher", WorldObject)
 function Gopher:initialize(...)
-	Object.initialize(self, ...)
+	WorldObject.initialize(self, ...)
 	
 end
 

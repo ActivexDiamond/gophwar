@@ -46,8 +46,8 @@ end
 ------------------------------ Callbacks ------------------------------
 DummyObject[EvMouseMove] = function(self, e)
 	--Those are too spammy.
-	--if e.class == EvMouseMove then return end
-	print("Got event: " .. tostring(e))
+	if e.class == EvMouseMove then return end
+	--print("Got event: " .. tostring(e))
 end
 
 ------------------------------ Getters / Setters ------------------------------

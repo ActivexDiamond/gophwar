@@ -17,8 +17,15 @@ function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 		
 	self.title = title or "Untitled Game"
 	love.window.setTitle(title)
-	self.windowW, self.windowH = targetWindowW, targetWindowH
-	love.window.setMode(targetWindowW, targetWindowH)
+	if targetWindowW == -1 and targetWindowH == -1 then
+		love.window.setFullscreen(true)
+	elseif targetWindowW > 0 and targetWindowH > 0 then
+		love.window.setMode(targetWindowW, targetWindowH)
+	else
+		error(string.format("Invalid window size. w/h must both be -1, for fullscreen,"
+		.. "or positive. Current size: " .. targetWindowW .. ", " .. targetWindowH))
+	end
+	self.windowW, self.windowH = love.window.getMode()
 			
 	self.scheduler = Scheduler()
 	self.eventSystem = EventSystem()

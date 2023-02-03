@@ -11,3 +11,9 @@ Doesn't handle inheritance properly.
 
 change Fsm `add` to `addState` but then how would scenes work? just say addState?
 Wrap it behind a addScene?
+
+Scene shouldn't include the GAME:getEventSystem.... thingy when added.
+
+evsys:attach(obj, Event) doesn't work
+	Using Event says must be Event or subclass of it
+	Using EvSomething says isSubc

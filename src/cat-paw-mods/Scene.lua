@@ -1,12 +1,14 @@
 local middleclass = require "libs.middleclass"
 local State = require "cat-paw.core.patterns.state.State"
 
+local Event = require "cat-paw.core.patterns.event.Event"
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
 local Scene = middleclass("Scene", State)
 function Scene:initialize()
 	State.initialize(self)
+	--GAME:getEventSystem():attach(self, {Event})
 	self.objects = {}
 end
 

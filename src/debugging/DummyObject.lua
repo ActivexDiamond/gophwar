@@ -4,7 +4,7 @@ local DataRegistry = require "core.DataRegistry"
 local AssetRegistry = require "core.AssetRegistry"
 
 local Event = require "cat-paw.core.patterns.event.Event"
-local EvMouse = require "cat-paw.core.patterns.event.mouse.EvMouse"
+--local EvMouse = require "cat-paw.core.patterns.event.mouse.EvMouse"
 
 local EvMouseMove = require "cat-paw.core.patterns.event.mouse.EvMouseMove"
 
@@ -46,7 +46,6 @@ end
 DummyObject[Event] = function(self, e)
 	--Those are too spammy.
 	if e.class == EvMouseMove then return end
-	
 	print("Got event: " .. tostring(e))
 end
 

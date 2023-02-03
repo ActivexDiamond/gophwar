@@ -15,6 +15,8 @@ local State = require "cat-paw.core.patterns.state.State"
 local Game = middleclass("Game", AbstractGame)
 function Game:initialize(...)
 	AbstractGame.initialize(self, ...)
+	print("Starting game... " .. self.title)
+	print(string.format("Window size: (%d, %d)", self.windowW, self.windowH))
 	self:_loadAllAssets()
 	GAME = self
 	self:add(Game.MAIN_MENU_SCENE_ID, MainMenuScene())

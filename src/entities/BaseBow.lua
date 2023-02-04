@@ -29,6 +29,7 @@ end
 BaseBow[EvMousePress] = function(self, e)
 	if e.button == 2 then return end
 	print("pew")
+	print(self.scene)
 	local arrow = Projectile("crossbow_base_arrow", self.scene, 100, 100)
 end
 ------------------------------ Getters / Setters ------------------------------

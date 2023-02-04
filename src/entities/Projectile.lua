@@ -11,6 +11,7 @@ local Projectile = middleclass("Projectile", WorldObject)
 function Projectile:initialize(...)
 	WorldObject.initialize(self, ...)
 	love.audio.play(SFX.arrow_shoot)
+	self.depth = 99
 end
 
 ------------------------------ Core API ------------------------------

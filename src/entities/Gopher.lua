@@ -122,9 +122,9 @@ function Gopher:onDeath()
 		self.scene:addObject(ItemDrop(self.drop, self.scene, self.pos.x, self.pos.y, 1))
 		return 
 	end
-	if math.random() < 0.5 then
+	if math.random() < 0.8 then
 		self.scene:addObject(ItemDrop("wood_stick", self.scene, self.pos.x, self.pos.y, 
-				math.random(1, 3)))
+				math.random(1, 6)))
 	end
 end
 

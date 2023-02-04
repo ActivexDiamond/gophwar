@@ -49,7 +49,7 @@ data{"gopher_chonky",
 
 data{"dryad_tree",
 	w = 128*3, h = 128*3,
-	health = 50,
+	health = 500,
 	--flashBaseDuration = 2,
 	shakeBaseDuration = 2,
 }
@@ -72,7 +72,21 @@ data{"crossbow_base_arrow",
 }
 
 data{"root",
-	w = 16, h = 32,
+	w = 16*3, h = 32*3,
 	health = 10
 }
 
+data{"button",
+}
+
+data{"spikes_tier1",
+	w = 32*4, h = 32*4,
+	health = 5,
+	damage = 50,
+}
+
+data{"spikes_tier2",
+	w = 32*4, h = 32*4,
+	health = 10,
+	damage = 50,
+}

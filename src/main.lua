@@ -4,6 +4,7 @@ io.stdout:setvbuf('no')			--Fix for some terminals not flushing properly with Lu
 --Call update immediately to not miss any prints from the creation of objects or importing of files.
 --lovebird:update()
 
+MOUSE_ITEM_COUNT = 0
 DEBUG = {
 	ECHO_EVENTS = true,
 	ALLOW_QUICK_EXIT = true,

@@ -76,14 +76,12 @@ end
 EventSystem.attach = overload({
 	EventSystem, 'table', Event,
 	function(self, target, event)
-		print("case 1")
 		--print("case 1", self, target, event, event.class, event:isSubclassOf(Event), event == Event)
 		self:_rawAttach(target, event, target[event])
 	end,
 	
 	EventSystem, 'table', 'table',
 	function(self, target, events)
-		print("case 2")
 		--print("case 2", self, target, events, events.class, events == Event)
 		--print(events[1].class, events[1] == Event, events[1]:isSubclassOf(Event))
 		for _, e in pairs(events) do
@@ -93,7 +91,6 @@ EventSystem.attach = overload({
 
 	EventSystem, 'table', 'number',
 	function(self, target, getAllCode)
-		print("case 3")
 		self:_fetchAllCallbacks(target, getAllCode)
 	end,
 		

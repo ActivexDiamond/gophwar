@@ -1,5 +1,6 @@
 local middleclass = require "libs.middleclass"
 local AGuiManager = require "gui.AGuiManager"
+local InGameScene = require "scenes.InGameScene"
 
 ------------------------------ Helpers ------------------------------
 local function centerRectOnScreen(w, h)

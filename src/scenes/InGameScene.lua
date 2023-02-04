@@ -14,8 +14,6 @@ local InGameScene = middleclass("InGameScene", Scene)
 function InGameScene:initialize(...)
 	Scene.initialize(self, ...)
 
-	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
-
 	local treeX = (GAME.windowW / 2) - (128 / 2)
 	local treeY = (GAME.windowH / 2) - (128 / 2)
 	self.dryadTree = DryadTree("dryad_tree", self, treeX, treeY, 128, 128)
@@ -27,6 +25,8 @@ function InGameScene:initialize(...)
 	local baseBow = BaseBow("base_bow", self, bowX, bowY, 64, 64)
 	baseBow:setDepth(12)
 	self:addObject(baseBow)
+	
+	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
 end
 
 ------------------------------ Core API ------------------------------

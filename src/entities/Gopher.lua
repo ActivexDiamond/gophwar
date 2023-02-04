@@ -45,7 +45,7 @@ function Gopher:update(dt)
 end
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()
-	print(self.scene, self.scene.dryadTree)
+	print(self.scene, self.scene:getDryadTree())
 	self.nearestRoot = self.scene.dryadTree
 	return (self.pos - self.nearestRoot.pos):getLength() 
 end

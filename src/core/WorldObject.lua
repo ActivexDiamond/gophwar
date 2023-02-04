@@ -27,6 +27,8 @@ function WorldObject:draw(g2d)
 	local frame;
 	if type(spr[1]) == 'table' then
 		frame = frame[self.currentFrame]
+	else
+		frame = spr
 	end
 
 	g2d.setColor(1, 1, 1, 1)

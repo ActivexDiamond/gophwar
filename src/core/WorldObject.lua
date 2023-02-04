@@ -22,7 +22,6 @@ end
 ------------------------------ Core API ------------------------------
 function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
-	print(self)
 	local spr, sx, sy = AssetRegistry:getSprObj(self)
 	local frame;
 	if type(spr[1]) == 'table' then

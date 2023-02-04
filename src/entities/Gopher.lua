@@ -1,5 +1,6 @@
 local middleclass = require "libs.middleclass"
 local WorldObject = require "core.WorldObject"
+local brinevector = require "libs.brinevector"
 
 ------------------------------ Helpers ------------------------------
 
@@ -17,6 +18,7 @@ end
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
 	WorldObject.update(self, dt)
+	print(self.target)
 	local distanceToRoot = self:_computeDistanceToRoot()
 	--Root has died, new nearest emerges.
 	if 	self.distanceToRoot ~= distanceToRoot then
@@ -34,7 +36,10 @@ function Gopher:update(dt)
 	end
 	
 	if self.target then
-		--move in dir
+		local vel = self.nearestRoot.pos - self.pos 
+		vel.length = 10
+		print(vel)
+		self.pos = self.pos + vel
 		--if within offset and tolerance, stop
 		self.eating = true
 	end
@@ -45,7 +50,6 @@ function Gopher:update(dt)
 end
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()
-	print(self.scene, self.scene:getDryadTree())
 	self.nearestRoot = self.scene.dryadTree
 	return (self.pos - self.nearestRoot.pos):getLength() 
 end

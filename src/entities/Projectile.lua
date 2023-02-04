@@ -10,7 +10,7 @@ local Gopher = require "entities.Gopher"
 local Projectile = middleclass("Projectile", WorldObject)
 function Projectile:initialize(...)
 	WorldObject.initialize(self, ...)
-	self.depth = 10
+	love.audio.play(SFX.arrow_shoot)
 end
 
 ------------------------------ Core API ------------------------------

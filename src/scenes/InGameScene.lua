@@ -8,6 +8,7 @@ local DryadTree = require "entities.DryadTree"
 local BaseBow = require "entities.BaseBow"
 local RootController = require "entities.RootController"
 local GopherSpawner = require "entities.GopherSpawner"
+local RootController = require "entities.RootController"
 local DecorationSpawner = require "entities.DecorationSpawner"
 local InventoryManager = require "entities.InventoryManager"
 local WorldObject = require "core.WorldObject"
@@ -39,10 +40,12 @@ function InGameScene:initialize(...)
 	baseBow:setRotation(90)
 	self:addObject(baseBow)
 
-	local rootController = GopherSpawner(self)
+	local rootController = RootController(self)
 	self:addObject(rootController)
 	self.rootController = rootController 
 
+	local gopherSpawner = GopherSpawner(self)
+	self:addObject(gopherSpawner)
 	local gopherSpawner = GopherSpawner(self)
 	self:addObject(gopherSpawner)
 	self.gopherSpawner = gopherSpawner

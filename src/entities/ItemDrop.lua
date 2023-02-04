@@ -27,6 +27,7 @@ ItemDrop[EvMousePress] = function(self, e)
 	if dist <= self.w then
 		self.scene:getInventoryManager():addItem(self.ID, self.amount)
 		self.scene:removeObject(self)
+		love.audio.play(SFX.pickup)
 	end
 end
 

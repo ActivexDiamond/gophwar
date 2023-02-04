@@ -5,7 +5,7 @@ local WorldObject = require "core.WorldObject"
 
 ------------------------------ Constructor ------------------------------
 local Root = middleclass("Root", WorldObject)
-function Root:initialize(id, scene, x, y)
+function Root:initialize(scene, x, y)
 	WorldObject.initialize(self, "root", scene, x, y)
 	
 end

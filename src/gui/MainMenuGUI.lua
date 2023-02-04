@@ -35,8 +35,8 @@ function GuiTest:initialize(...)
                 text = "Start",
                 onHit = function ()
                 	GAME:remove(GAME.IN_GAME_SCENE_ID) 
-                	GAME:add(Game.IN_GAME_SCENE_ID, InGameScene())
-                	GAME:goTo(Game.IN_GAME_SCENE_ID)
+                	GAME:add(GAME.IN_GAME_SCENE_ID, InGameScene())
+                	GAME:goTo(GAME.IN_GAME_SCENE_ID)
                 end
             },
             Button {

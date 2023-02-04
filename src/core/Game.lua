@@ -30,7 +30,7 @@ function Game:initialize(...)
 	self:add(Game.IN_GAME_SCENE_ID, InGameScene())
 	self:add(Game.GAME_OVER_SCENE_ID, GameOverScreen())
 	
-	self:goTo(Game.GAME_OVER_SCENE_ID)
+	self:goTo(Game.MAIN_MENU_SCENE_ID)
 	--self:goTo(Game.IN_GAME_SCENE_ID)
 end
 

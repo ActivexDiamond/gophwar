@@ -22,7 +22,7 @@ function InGameScene:initialize(...)
 
 	local bowX = (GAME.windowW / 2) - (64 / 2)
 	local bowY = (GAME.windowH / 2) - (64 / 2)
-	local baseBow = BaseBow("base_bow", self, bowX, bowY, 64, 64)
+	local baseBow = BaseBow("crossbow_base", self, bowX, bowY, 64, 64)
 	baseBow:setDepth(12)
 	self:addObject(baseBow)
 	

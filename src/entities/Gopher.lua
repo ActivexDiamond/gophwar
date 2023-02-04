@@ -7,7 +7,7 @@ local WorldObject = require "core.WorldObject"
 local Gopher = middleclass("Gopher", WorldObject)
 function Gopher:initialize(...)
 	WorldObject.initialize(self, ...)
-	
+	self.treePosition = 0 
 end
 
 ------------------------------ Core API ------------------------------

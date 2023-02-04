@@ -12,6 +12,8 @@ local Object = middleclass("Object")
 function Object:initialize(id)
 	self.ID = id
 	self.depth = 0
+	--Not specifying which events will slow down the EventSystem as a whole,
+	--but not by a lot.
 	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	DataRegistry:applyStats(self)
 end

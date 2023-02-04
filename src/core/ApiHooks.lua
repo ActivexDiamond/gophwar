@@ -4,6 +4,8 @@ local middleclass = require "libs.middleclass"
 local EvKeyPress = require "cat-paw.core.patterns.event.keyboard.EvKeyPress"
 local EvKeyRelease = require "cat-paw.core.patterns.event.keyboard.EvKeyRelease"
 local EvTextInput = require "cat-paw.core.patterns.event.keyboard.EvTextInput"
+local EvTextEdit = require "cat-paw.core.patterns.event.keyboard.EvTextEdit"
+
 
 local EvMousePress = require "cat-paw.core.patterns.event.mouse.EvMousePress"
 local EvMouseRelease = require "cat-paw.core.patterns.event.mouse.EvMouseRelease"
@@ -41,9 +43,11 @@ function ApiHooks.static._hookLoveCallbacks(handler)
 		handler.draw = handler.draw
 	end
 	--Evsys
+	
 	love.keypressed = wrap(handler, ApiHooks._onKeyPressed)
 	love.keyreleased = wrap(handler, ApiHooks._onKeyReleased)
-	love.textinput = wrap(handler, ApiHooks.o_nTextInput)
+	love.textinput = wrap(handler, ApiHooks._nTextInput)
+	love.texteditted = wrap(handler, ApiHooks._nTextEdit)
 	
 	love.mousepressed = wrap(handler, ApiHooks._onMousePressed)
 	love.mousereleased = wrap(handler, ApiHooks._onMouseReleased)
@@ -73,6 +77,10 @@ function ApiHooks.static._onKeyReleased(handler, k, code, isRepeat)
 end
 function ApiHooks.static._onTextInput(handler, char)
 	handler:queue(EvTextInput(char))
+end
+
+function ApiHooks.static._onTextEdit(handler, text, start, length)
+	handler:queue(EvTextEdit(text, start, length))
 end
 
 ---------Mouse

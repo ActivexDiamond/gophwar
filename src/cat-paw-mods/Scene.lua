@@ -23,6 +23,7 @@ end
 function Scene:draw(g2d)
 	State.draw(self, g2d)
 	for obj, _ in pairs(self.objects) do
+		print(obj)
 		print("Depth: " .. obj.depth)
 		--for k, v in pairs(obj) do
 		--	print(k .. " " .. tostring(v))

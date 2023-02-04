@@ -13,25 +13,31 @@ function Gopher:initialize(...)
  	self.targetDistance = 0
  	self.eating = false
  	self.distanceToRoot = self:_computeDistanceToRoot()
+ 	self.originalPosition = self.pos:getCopy()
 end
 
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
 	WorldObject.update(self, dt)
 	local distanceToRoot = self:_computeDistanceToRoot()
-	--Root has died, new nearest emerges.
+	--Root has died.
 	if 	self.eating and self.distanceToRoot ~= distanceToRoot then
 		self.eating = false
+		self.target = nil
 	end
 	
 	if not self.eating then
+		--Haven't started yet.
 		if self.bitesTaken == 0 then
 			self.distanceToRoot = self:_computeDistanceToRoot()
 			self.target = self.nearestRoot
 			local offset = math.random(-self.distOffset, self.distOffset)
 			self.targetDistance = self.distanceToRoot + offset
 		else
-			--target outside of map
+			--Finished eating.
+			local vel = self.originalPosition - self.scene:getDryadTree().pos 
+			vel.length = self.speed
+			self.pos = self.pos + vel * dt
 		end
 	end
 	
@@ -52,7 +58,16 @@ function Gopher:update(dt)
 	if self.bitesTaken > 0 then
 		self.currentFrame = 1
 	end
+	
+	--Out of screen
+	local SW, SH = GAME.windowW, GAME.windowH
+	if self.pos.x < 0 or self.pos.x + self.w > SW or
+			self.pos.y < 0 or self.pos.y + self.h > SH then
+		print(self.ID .. " left screen.")
+		self.scene:removeObject(self)
+	end
 end
+
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()
 	self.nearestRoot = self.scene.dryadTree
@@ -61,11 +76,15 @@ end
 
 function Gopher:_attemptBite()
 	print(self.bitesTaken, #self.biteChances)
-	if not self.biteChances[self.bitesTaken + 1] then return end
+	if not self.biteChances[self.bitesTaken + 1] then 
+		self.eating = false
+		return false
+	end
 	
 	local prob = math.random()
 	if prob > self.biteChances[self.bitesTaken + 1] then
-		return
+		self.eating = false
+		return false
 	end
 	
 	local offset = math.random(-self.biteCooldownOffset, self.biteCooldownOffset)

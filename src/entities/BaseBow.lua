@@ -19,7 +19,7 @@ function Gopher:update(dt)
     local selfVector = brinevector(self.pos.x, self.pos.y)
 
     local test = selfVector - mouseVector;
-    print("mv " .. test)
+    --print("mv " .. test)
     self:setSpriteOrigin(self.w / 4, self.h / 4)
     self:setRotation(test:getAngle())
 end

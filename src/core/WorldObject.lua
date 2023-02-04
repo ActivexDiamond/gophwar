@@ -29,6 +29,7 @@ function WorldObject:draw(g2d)
 	else
 		frame = spr
 	end
+	print(frame, self.currentFrame)
 
 	g2d.setColor(1, 1, 1, 1)
 	g2d.draw(frame, self.pos.x, self.pos.y, self.rotation, sx, sy,

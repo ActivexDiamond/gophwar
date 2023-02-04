@@ -73,7 +73,7 @@ end
 --- Returns true if remove successfull, false otherwise.
 --- Will fail if object does not exist.
 function Scene:removeObject(obj)
-	if not self.object[obj] then return false end
+	if not self.objects[obj] then return false end
 
 	self.objects[obj] = nil
 	return true

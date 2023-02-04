@@ -21,9 +21,15 @@ end
 ------------------------------ Core API ------------------------------
 function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
+	print(self)
 	local spr, sx, sy = AssetRegistry:getSprObj(self)
+	local frame;
+	if type(spr[1]) == 'table' then
+		frame = frame[self.currentFrame]
+	end
+
 	g2d.setColor(1, 1, 1, 1)
-	g2d.draw(spr, self.pos.x, self.pos.y, self.rotation, sx, sy,
+	g2d.draw(frame, self.pos.x, self.pos.y, self.rotation, sx, sy,
 			self.spriteOrigin.x, self.spriteOrigin.y)
 	if self.rect then
 		g2d.rectangle('line', self.pos.x, self.pos.y, self.w, self.h)

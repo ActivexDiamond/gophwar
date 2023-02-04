@@ -12,7 +12,7 @@ local Projectile = require "entities.Projectile"
 local BaseBow = middleclass("BaseBow", WorldObject)
 function BaseBow:initialize(...)
     WorldObject.initialize(self, ...)
-	self:setSpriteOffset(WorldObject.SPRITE_CENTER)
+    self:setSpriteOffset(WorldObject.SPRITE_CENTER)
 end
 
 function BaseBow:update(dt)
@@ -30,7 +30,13 @@ BaseBow[EvMousePress] = function(self, e)
 	if e.button == 2 then return end
 	print("pew")
 	print(self.scene)
-	local arrow = Projectile("crossbow_base_arrow", self.scene, 100, 100)
+	local pos = self:getCenter()
+	local arrow = Projectile("crossbow_base_arrow", self.scene, pos.x - 5, pos.y - 5)
+	arrow:setSpriteOffset(WorldObject.SPRITE_CENTER)
+	arrow:setRotation(self.rotation + math.pi)
+	
+	self.scene:addObject(arrow)
+	
 end
 ------------------------------ Getters / Setters ------------------------------
 

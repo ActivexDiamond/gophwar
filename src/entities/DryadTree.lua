@@ -4,8 +4,8 @@ local WorldObject = require "core.WorldObject"
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Gopher = middleclass("DryadTree", WorldObject)
-function Gopher:initialize(...)
+local DryadTree = middleclass("DryadTree", WorldObject)
+function DryadTree:initialize(...)
 	WorldObject.initialize(self, ...)
 	
 end
@@ -16,4 +16,4 @@ end
 
 ------------------------------ Getters / Setters ------------------------------
 
-return Gopher
+return DryadTree

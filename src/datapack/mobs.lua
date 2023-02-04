@@ -27,9 +27,12 @@ data{"dryad_tree",
 data{"crossbow_base",
 	w = 64, h = 64,
 	spriteDirectionOffset = math.pi * 0.25
+	cooldown = 0.1
 }
 
 data{"crossbow_base_arrow",
+	w = 16, h = 16,
 	damage = 5,
 	speed = 600,
+	spriteDirectionOffset = math.pi * 0.25
 }

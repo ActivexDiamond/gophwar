@@ -95,7 +95,7 @@ end
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()
 	self.nearestRoot = self.scene.dryadTree
-	return (self.pos - self.nearestRoot.pos):getLength() 
+	return (self.pos - self.nearestRoot:getCenter()):getLength() 
 end
 
 function Gopher:_attemptBite()

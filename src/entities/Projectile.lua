@@ -1,4 +1,6 @@
 local middleclass = require "libs.middleclass"
+local brinevector = require "libs.brinevector"
+
 local WorldObject = require "core.WorldObject"
 
 ------------------------------ Helpers ------------------------------
@@ -7,20 +9,17 @@ local WorldObject = require "core.WorldObject"
 local Projectile = middleclass("Projectile", WorldObject)
 function Projectile:initialize(...)
 	WorldObject.initialize(self, ...)
-	self.depth = 100
+	self.depth = 10
 end
 
 ------------------------------ Core API ------------------------------
 function Projectile:update(dt)
 	WorldObject.update(self, dt)
 	
-	local complete = self.wiggleTween:update(dt)
-	if complete then
-		self.wiggleDirection = self.wiggleDirection * -1
-		self.wiggleTween = tween.new(self.wiggleDuration, self, 
-				{rotation = self.wiggleDirection * self.wiggleRange})
-	end
-	
+	local vel = brinevector(1, 1)
+	vel.length = self.speed
+	vel.angle = self.rotation - self.spriteDirectionOffset
+	self.pos = self.pos + vel * dt
 	--Out of screen
 	local SW, SH = GAME.windowW, GAME.windowH
 	if self.pos.x < 0 or self.pos.x + self.w > SW or

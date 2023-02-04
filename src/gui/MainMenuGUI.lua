@@ -13,8 +13,8 @@ end
 local GuiTest = middleclass("GuiTest", AGuiManager)
 function GuiTest:initialize(...)
 	AGuiManager.initialize(self, ...)
-    local W, H = 400, 100  -- pick arbitrary UI size
-    local x, y = centerRectOnScreen(W, H)
+    local w, h = 400, 100  -- pick arbitrary UI size
+    local x, y = centerRectOnScreen(w, h)
     y = 60
 
 	local Ui = self.yui.Ui
@@ -27,7 +27,7 @@ function GuiTest:initialize(...)
         Rows {
             padding = 5,
             Label {
-                w = W, h = H,
+                w = w, h = h,
                 text = "GophWar",
             },
             Button {
@@ -46,10 +46,6 @@ function GuiTest:initialize(...)
             Button {
                 text = "Tutorial",
                 onHit = function () GAME:goTo(GAME.TUTORIAL_MENU_SCENE_ID) end
-            },
-            Button {
-                text = "Test",
-                onHit = function () print("Pressed!") end
             },
             Button {
                 text = "Exit",

@@ -1,8 +1,12 @@
 local middleclass = require "libs.middleclass"
 local State = require "cat-paw.core.patterns.state.State"
 local util = require "libs.utils"
+local bump = require "libs.bump"
+
+local WorldObject = require "core.WorldObject"
 
 local Event = require "cat-paw.core.patterns.event.Event"
+
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
@@ -11,6 +15,7 @@ function Scene:initialize()
 	State.initialize(self)
 	--GAME:getEventSystem():attach(self, {Event})
 	self.objects = {}
+	self.bumpWorld = bump.newWorld(32)
 end
 
 ------------------------------ Core API ------------------------------
@@ -18,6 +23,21 @@ function Scene:update(dt)
 	State.update(self, dt)
 	for obj, _ in pairs(self.objects) do
 		obj:update(dt)
+	end
+	
+	for obj, _ in pairs(self.objects) do
+		if not obj:isInstanceOf(WorldObject) then goto continue end
+		local targetPos = obj.pos + obj.vel * dt
+		local x, y, cols, len = self.bumpWorld:move(obj, targetPos.x, targetPos.y, 
+				obj.collisionFilter or function() return 'cross' end)
+		obj:setPosition(x, y)
+		if len > 0 then
+			for k, col in ipairs(cols) do
+				if obj.onCollision then obj:onCollision(col.other) end
+				if col.other.onCollision then col.other:onCollision(obj) end
+			end
+		end
+		::continue::
 	end
 end
 
@@ -67,6 +87,9 @@ function Scene:addObject(obj)
 	if self.objects[obj] then return false end
 
 	self.objects[obj] = true
+	if obj:isInstanceOf(WorldObject) then 
+		self.bumpWorld:add(obj, obj.pos.x, obj.pos.y, obj.w, obj.h)
+	end
 	return true
 end
 
@@ -76,6 +99,9 @@ function Scene:removeObject(obj)
 	if not self.objects[obj] then return false end
 
 	self.objects[obj] = nil
+	if obj:isInstanceOf(WorldObject) then
+		self.bumpWorld:remove(obj)
+	end
 	return true
 end
 

@@ -13,6 +13,8 @@ function WorldObject:initialize(id, scene, x, y)
 	Object.initialize(self, id)
 	self.scene = scene
 	self.pos = brinevector(x, y)
+	
+	self.vel = brinevector(0, 0)
 	self.currentFrame = 0
 	self.rotation = 0
 	self.spriteOffset = {x = 0, y = 0}	
@@ -49,6 +51,8 @@ function WorldObject:draw(g2d)
 end
 
 ------------------------------ API ------------------------------
+
+------------------------------ Phyiscs ------------------------------
 
 ------------------------------ Getters / Setters ------------------------------
 function WorldObject:getPosition() return self.pos end

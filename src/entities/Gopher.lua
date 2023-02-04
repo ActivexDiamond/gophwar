@@ -17,7 +17,7 @@ function Gopher:initialize(...)
  	self.eating = false
  	self.distanceToRoot = self:_computeDistanceToRoot()
  	self.originalPosition = self.pos:getCopy()
-	
+	print(self.pos)
 	self.wiggleCounter = 0
 	
 --	self.wiggleTweens = {
@@ -32,7 +32,7 @@ end
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
 	WorldObject.update(self, dt)
-	
+	self.vel = brinevector(0, 0)
 	local complete = self.wiggleTween:update(dt)
 	if complete then
 		self.wiggleDirection = self.wiggleDirection * -1
@@ -56,16 +56,17 @@ function Gopher:update(dt)
 			self.targetDistance = self.distanceToRoot + offset
 		else
 			--Finished eating.
-			local vel = self.originalPosition - self.scene:getDryadTree().pos 
-			vel.length = self.speed
-			self.pos = self.pos + vel * dt
+			self.vel = self.originalPosition - self.scene:getDryadTree().pos 
+			self.vel.length = self.speed
+			--self.pos = self.pos + vel * dt
 		end
 	end
 	
 	if self.target then
-		local vel = self.nearestRoot.pos - self.pos 
-		vel.length = self.speed
-		self.pos = self.pos + vel * dt
+		self.vel = self.nearestRoot.pos - self.pos 
+		self.vel.length = self.speed
+		--self.pos = self.pos + vel * dt
+		
 		--if within offset and tolerance, stop
 		local dist = (self.pos - self.target.pos):getLength()
 		if dist <= self.tolerance then
@@ -90,6 +91,21 @@ function Gopher:update(dt)
 			GAME:getScheduler():cancel(self.wiggle)
 		end
 	end
+end
+
+------------------------------ Interactions ------------------------------
+function Gopher:takeDamage(damage)
+	self.health = self.health - damage
+	if self.health <= 0 then
+		self:onDeath()
+	end
+end
+
+------------------------------ Callbacks ------------------------------
+function Gopher:onDeath()
+	print(self.ID .. " died.")
+	self.scene:removeObject(self)
+	GAME:getScheduler():cancel(self.wiggle)	
 end
 
 ------------------------------ Internals ------------------------------

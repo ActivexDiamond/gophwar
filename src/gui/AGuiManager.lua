@@ -17,11 +17,13 @@ function AGuiManager:initialize()
 	assert(self.class ~= AGuiManager, "Cannot init abstract class.")
 	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	self.depth = 0
+	self.w, self.h = 0, 0
 	self.yui = yui
 end
 
 ------------------------------ Core API ------------------------------
 function AGuiManager:update(dt)
+	assert(self.gui, "`self.gui` is nil. Are you sure you extended AGuiManager with a proper child? It should set its `self.gui` to a yui.Ui object.")
 	self.gui:update(dt)
 end
 

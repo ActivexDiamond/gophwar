@@ -13,8 +13,8 @@ end
 local GuiTest = middleclass("OptionsGUI", AGuiManager)
 function GuiTest:initialize(...)
     AGuiManager.initialize(self, ...)
-    local W, H = 400, 100  -- pick arbitrary UI size
-    local x, y = centerRectOnScreen(W, H)
+    local w, h = 400, 100  -- pick arbitrary UI size
+    local x, y = centerRectOnScreen(w, h)
     y = 60
 
     local Ui = self.yui.Ui
@@ -22,34 +22,34 @@ function GuiTest:initialize(...)
     local Button, Label, Slider, Columns = self.yui.Button, self.yui.Label, self.yui.Slider, self.yui.Columns
 
     print("gui ", self.gui)
-    --self.gui = self.yui.Ui:new {
-    --    x = x, y = y,
-    --
-    --    Rows {
-    --        padding = 5,
-    --        Columns {
-    --            padding = 4,
-    --
-    --            Label {
-    --                w = w, h = h,
-    --                text = "Music"
-    --            },
-    --            Slider {
-    --                min = 0, max = 100,
-    --                value = 0,
-    --
-    --                onChange = function(_, value) print(value)  end
-    --            }
-    --        },
-    --        Button {
-    --            text = "Back",
-    --            onHit = function() GAME:goTo(GAME.MAIN_MENU_SCENE_ID)  end
-    --        },
-    --        Label {
-    --            text = "The UI Might not work sometimes, so you have to press the button multiple times",
-    --        },
-    --    }
-    --}
+    self.gui = self.yui.Ui:new {
+        x = x, y = y,
+    
+        Rows {
+            padding = 5,
+            Columns {
+                padding = 4,
+    
+                Label {
+                    w = w, h = h,
+                    text = "Music"
+                },
+                Slider {
+                    min = 0, max = 100,
+                    value = 0,
+    
+                    onChange = function(_, value) print(value)  end
+                }
+            },
+            Button {
+                text = "Back",
+                onHit = function() GAME:goTo(GAME.MAIN_MENU_SCENE_ID)  end
+            },
+            Label {
+                text = "The UI Might not work sometimes, so you have to press the button multiple times",
+            },
+        }
+    }
     print("gui ", self.gui)
 end
 

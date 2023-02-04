@@ -13,6 +13,7 @@ local BaseBow = middleclass("BaseBow", WorldObject)
 function BaseBow:initialize(...)
     WorldObject.initialize(self, ...)
     self:setSpriteOffset(WorldObject.SPRITE_CENTER)
+    self.lastShot = love.timer.getTime()
 end
 
 function BaseBow:update(dt)
@@ -28,15 +29,15 @@ end
 ------------------------------ Callbacks ------------------------------
 BaseBow[EvMousePress] = function(self, e)
 	if e.button == 2 then return end
-	print("pew")
-	print(self.scene)
-	local pos = self:getCenter()
-	local arrow = Projectile("crossbow_base_arrow", self.scene, pos.x - 5, pos.y - 5)
-	arrow:setSpriteOffset(WorldObject.SPRITE_CENTER)
-	arrow:setRotation(self.rotation + math.pi)
+	if love.timer.getTime() - self.lastShot > self.cooldown then 
+		local pos = self:getCenter()
+		local arrow = Projectile("crossbow_base_arrow", self.scene, pos.x - 5, pos.y - 5)
+		arrow:setSpriteOffset(WorldObject.SPRITE_CENTER)
+		arrow:setRotation(self.rotation + math.pi)
+		self.scene:addObject(arrow)
 	
-	self.scene:addObject(arrow)
-	
+		self.lastShot = love.timer.getTime()
+	end	
 end
 ------------------------------ Getters / Setters ------------------------------
 

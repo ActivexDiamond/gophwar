@@ -26,7 +26,8 @@ function Game:initialize(...)
 	self:add(Game.TUTORIAL_MENU_SCENE_ID, TutorialMenuScene())
 	self:add(Game.IN_GAME_SCENE_ID, InGameScene())
 	
-	self:goTo(Game.IN_GAME_SCENE_ID)
+	self:goTo(Game.MAIN_MENU_SCENE_ID)
+	--self:goTo(Game.IN_GAME_SCENE_ID)
 end
 
 ------------------------------ Constants ------------------------------

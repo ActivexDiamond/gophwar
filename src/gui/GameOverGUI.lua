@@ -8,42 +8,29 @@ local function centerRectOnScreen(w, h)
     return x, y
 end
 
-
 ------------------------------ Constructor ------------------------------
-local GuiTest = middleclass("OptionsGUI", AGuiManager)
+local GuiTest = middleclass("GuiCredit", AGuiManager)
 function GuiTest:initialize(...)
     AGuiManager.initialize(self, ...)
-    local w, h = 200, 100  -- pick arbitrary UI size
+    local w, h = 400, 100  -- pick arbitrary UI size
     local x, y = centerRectOnScreen(w, h)
-    y = 60
+    y = 400
 
     local Ui = self.yui.Ui
     local Rows = self.yui.Rows
-    local Button, Label, Slider, Columns = self.yui.Button, self.yui.Label, self.yui.Slider, self.yui.Columns
-
+    local Button, Label, Columns, Checkbox = self.yui.Button, self.yui.Label, self.yui.Columns, self.yui.Checkbox
     print("gui ", self.gui)
     self.gui = self.yui.Ui:new {
         x = x, y = y,
-    
+
         Rows {
             padding = 5,
-            Columns {
-                padding = 4,
-    
-                Label {
-                    w = w, h = h,
-                    text = "Music"
-                },
-                Slider {
-                    min = 0, max = 100,
-                    value = 0,
-    
-                    onChange = function(_, value) print(value)  end
-                }
-            },
             Button {
-                text = "Back",
-                onHit = function() GAME:goTo(GAME.MAIN_MENU_SCENE_ID)  end
+                w = w, h = 60,
+                text = "Restart",
+                onHit = function()
+                    GAME:goTo(GAME.MAIN_MENU_SCENE_ID)
+                end
             },
         }
     }

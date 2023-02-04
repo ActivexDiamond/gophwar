@@ -8,6 +8,7 @@ local OptionsMenuScene = require "scenes.OptionsMenuScene"
 local CreditMenuScene = require "scenes.CreditMenuScene"
 local TutorialMenuScene = require "scenes.TutorialMenuScene"
 local InGameScene = require "scenes.InGameScene"
+local GameOverScreen = require "scenes.GameOverScene"
 
 local shack = require "libs.shack"
 
@@ -27,8 +28,9 @@ function Game:initialize(...)
 	self:add(Game.CREDIT_MENU_SCENE_ID, CreditMenuScene())
 	self:add(Game.TUTORIAL_MENU_SCENE_ID, TutorialMenuScene())
 	self:add(Game.IN_GAME_SCENE_ID, InGameScene())
+	self:add(Game.GAME_OVER_SCENE_ID, GameOverScreen())
 	
-	self:goTo(Game.MAIN_MENU_SCENE_ID)
+	self:goTo(Game.GAME_OVER_SCENE_ID)
 	--self:goTo(Game.IN_GAME_SCENE_ID)
 end
 
@@ -38,6 +40,7 @@ Game.OPTIONS_MENU_SCENE_ID = 1
 Game.CREDIT_MENU_SCENE_ID = 2
 Game.TUTORIAL_MENU_SCENE_ID = 3
 Game.IN_GAME_SCENE_ID = 4
+Game.GAME_OVER_SCENE_ID = 5
 
 ------------------------------ Core API ------------------------------
 function Game:update(dt)

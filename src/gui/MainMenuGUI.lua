@@ -19,7 +19,7 @@ function GuiTest:initialize(...)
 
 	local Ui = self.yui.Ui
 	local Rows = self.yui.Rows
-	local Button, Label = self.yui.Button, self.yui.Label
+	local Button, Label, Columns, Checkbox = self.yui.Button, self.yui.Label, self.yui.Columns, self.yui.Checkbox
     print("gui ", self.gui)
     self.gui = self.yui.Ui:new {
         x = x, y = y,
@@ -40,16 +40,26 @@ function GuiTest:initialize(...)
                 end
             },
             Button {
-                text = "Options",
-                onHit = function () GAME:goTo(GAME.OPTIONS_MENU_SCENE_ID) end
-            },
-            Button {
                 text = "Credit",
                 onHit = function () GAME:goTo(GAME.CREDIT_MENU_SCENE_ID) end
             },
             Button {
                 text = "Tutorial",
                 onHit = function () GAME:goTo(GAME.TUTORIAL_MENU_SCENE_ID) end
+            },
+            Columns {
+                padding = 4,
+
+                Label {
+                    w = 300, h = 60,
+                    text = "Music"
+                },
+                Checkbox {
+                    w = 100,
+                    checked = true,
+
+                    onChange = function(_, checked) print("Checked to " .. tostring(checked)) end
+                }
             },
             Button {
                 text = "Exit",

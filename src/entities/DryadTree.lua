@@ -38,7 +38,6 @@ end
 function DryadTree:onDeath()
 	print("===== Game Over! =====")
 	GAME:goTo(GAME.GAME_OVER_SCENE_ID)
-	error "implement game over screen pls"
 end
 ------------------------------ Getters / Setters ------------------------------
 

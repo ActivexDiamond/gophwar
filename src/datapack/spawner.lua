@@ -28,3 +28,7 @@ data{"decoration_spawner",
 	treeCountMin = 20,
 	treeCountMax = 30,
 }
+
+data{"inventory_manager",
+}
+

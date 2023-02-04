@@ -14,6 +14,7 @@ function WorldObject:initialize(id, scene, x, y, w, h)
 	self.scene = scene
 	self.pos = brinevector(x, y)
 	self.w, self.h = w, h
+	self.currentFrame = 0
 	self.rotation = 0
 	self.spriteOrigin = brinevector(0, 0)	
 end

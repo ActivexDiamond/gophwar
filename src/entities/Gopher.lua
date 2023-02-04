@@ -39,7 +39,9 @@ function Gopher:update(dt)
 		self.eating = true
 	end
 	
-	
+	if self.bitesTaken > 0 then
+		self.currentFrame = 1
+	end
 end
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()

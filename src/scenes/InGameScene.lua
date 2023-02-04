@@ -6,7 +6,8 @@ local Scene = require "cat-paw-mods.Scene"
 local Gopher = require "entities.Gopher"
 local DryadTree = require "entities.DryadTree"
 local BaseBow = require "entities.BaseBow"
- 
+local RootController = require "entities.RootController"
+
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
@@ -27,9 +28,13 @@ function InGameScene:initialize(...)
 	local bowY = (GAME.windowH / 2) - (baseBow.h / 2)
 	baseBow:setPosition(bowX, bowY)
 	baseBow:setDepth(12)
+	baseBow:setRotation(90)
 	self:addObject(baseBow)
-	
 
+	local rootController = RootController(self)
+	self:addObject(rootController)
+	self.rootController = rootController 
+	
 	self:addObject(Gopher("gopher_base", self, 100, 100))
 	local angle
 	GAME:getScheduler():callEvery(0.9, function(dt, percentage, self)

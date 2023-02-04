@@ -26,13 +26,6 @@ function MainMenuScene:enter(from, ...)
 end
 
 ------------------------------ Callbacks ------------------------------
-MainMenuScene[EvKeyPress] = function(self, e)
-	if e.key == 'space' then
-		print("Got [space],  skipping to InGameScene.")
-		self.fsm:goTo(GAME.IN_GAME_SCENE_ID)	
-	end
-end
-		
 ------------------------------ Getters / Setters ------------------------------
 
 return MainMenuScene

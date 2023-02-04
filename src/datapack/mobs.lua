@@ -1,14 +1,14 @@
 data{"gopher_base",
 	w = 32*2, h = 32*2,
-
+	flashBaseDuration = 5,
 	speed = 150,
 	damage = 1,
 	health = 10,
 	
-	distOffset = -3,
+	distOffset = -6,
 	tolerance = 2,
 
-	biteCooldown = 0.6,--2,
+	biteCooldown = 2,
 	biteCooldownOffset = 0.5, 
 	biteChances = {1, 0.5, 0.25},
 	
@@ -22,7 +22,9 @@ data{"gopher_base",
 
 data{"dryad_tree",
 	w = 128*3, h = 128*3,
-	health = 20,
+	health = 50,
+	--flashBaseDuration = 2,
+	shakeBaseDuration = 2,
 }
 
 data{"tree",

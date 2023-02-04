@@ -17,7 +17,11 @@ function WorldObject:initialize(id, scene, x, y)
 	self.vel = brinevector(0, 0)
 	self.currentFrame = 0
 	self.rotation = 0
-	self.spriteOffset = {x = 0, y = 0}	
+	self.spriteOffset = {x = 0, y = 0}
+	self.flash = 0	
+	
+	self.flipSpriteX = 1
+	self.flipSpriteY = 1
 end
 
 ------------------------------ Constants ------------------------------
@@ -40,12 +44,20 @@ function WorldObject:draw(g2d)
 		frame = spr
 	end
 
+	sx = sx * self.flipSpriteX
+	sy = sy * self.flipSpriteY
 	local x = self.pos.x + self.w * self.spriteOffset.x
 	local y = self.pos.y + self.h * self.spriteOffset.y
-	local ox = frame:getWidth() * self.spriteOffset.x
+	local ox = frame:getWidth() * self.spriteOffset.x 
 	local oy = frame:getHeight() * self.spriteOffset.y
 	
-	g2d.setColor(1, 1, 1, 1)
+	
+	if self.flash > 0 then
+		g2d.setColor(1, 0, 0, 1)
+		self.flash = self.flash - 1
+	else
+		g2d.setColor(1, 1, 1, 1)
+	end
 	g2d.draw(frame, x, y, self.rotation, sx, sy, ox, oy)
 	if DEBUG.DRAW_BOUNDING_BOXES then
 		g2d.rectangle('line', self:getBoundingBox())
@@ -53,6 +65,7 @@ function WorldObject:draw(g2d)
 		local center = self:getCenter()
 		g2d.points(x, y)
 	end
+	g2d.setColor(1, 1, 1, 1)
 end
 
 ------------------------------ API ------------------------------

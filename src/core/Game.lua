@@ -9,6 +9,8 @@ local CreditMenuScene = require "scenes.CreditMenuScene"
 local TutorialMenuScene = require "scenes.TutorialMenuScene"
 local InGameScene = require "scenes.InGameScene"
 
+local shack = require "libs.shack"
+
 ------------------------------ Helpers ------------------------------
 local State = require "cat-paw.core.patterns.state.State"
 ------------------------------ Constructor ------------------------------
@@ -38,6 +40,15 @@ Game.TUTORIAL_MENU_SCENE_ID = 3
 Game.IN_GAME_SCENE_ID = 4
 
 ------------------------------ Core API ------------------------------
+function Game:update(dt)
+	AbstractGame.update(self, dt)
+	shack:update(dt)
+end
+
+function Game:draw(g2d)
+	shack:apply()
+	AbstractGame.draw(self, g2d)
+end
 
 ------------------------------ Internals ------------------------------
 function AbstractGame:_loadAllAssets()

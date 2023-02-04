@@ -18,7 +18,7 @@ function Gopher:initialize(...)
  	self.distanceToRoot = self:_computeDistanceToRoot()
  	self.originalPosition = self.pos:getCopy()
 	self.wiggleCounter = 0
-	
+		
 --	self.wiggleTweens = {
 --		tween.new(2, self, {rotation = math.pi*0.5}),
 --		tween.new(2, self, {rotation = -math.pi*0.5}),
@@ -69,6 +69,7 @@ function Gopher:update(dt)
 		--if within offset and tolerance, stop
 		local dist = (self.pos - self.target.pos):getLength()
 		if dist <= self.tolerance then
+			self.vel = brinevector(0, 0)
 			self.eating = true
 			self.distanceToRoot = self:_computeDistanceToRoot()
 			self.target = nil
@@ -90,11 +91,18 @@ function Gopher:update(dt)
 			GAME:getScheduler():cancel(self.wiggle)
 		end
 	end
+	
+	if self.pos.x < GAME.windowW / 2 then
+		self.flipSpriteX = 1
+	else
+		self.flipSpriteX = -1
+	end
 end
 
 ------------------------------ Interactions ------------------------------
 function Gopher:takeDamage(damage)
 	self.health = self.health - damage
+	self.flash = self.flashBaseDuration
 	if self.health <= 0 then
 		self:onDeath()
 	end

@@ -9,6 +9,8 @@ local BaseBow = require "entities.BaseBow"
 local RootController = require "entities.RootController"
 local GopherSpawner = require "entities.GopherSpawner"
 local DecorationSpawner = require "entities.DecorationSpawner"
+local InventoryManager = require "entities.InventoryManager"
+local WorldObject = require "core.WorldObject"
 
 ------------------------------ Helpers ------------------------------
 local function rgbToLove(r, g, b, a)
@@ -24,6 +26,7 @@ function InGameScene:initialize(...)
 	local treeX = (GAME.windowW / 2) - (tree.w / 2)
 	local treeY = (GAME.windowH / 2) - (tree.h / 2)
 	tree:setPosition(treeX, treeY)
+	tree:setSpriteOffset(WorldObject.SPRITE_CENTER)
 	tree:setDepth(1)
 	self:addObject(tree)
 	self.dryadTree = tree
@@ -47,6 +50,10 @@ function InGameScene:initialize(...)
 	local decorationSpawner = DecorationSpawner(self)
 	self:addObject(decorationSpawner)
 	self.decorationSpawner = decorationSpawner		
+
+	local inventoryManager = InventoryManager(self)
+	self:addObject(inventoryManager)
+	self.inventoryManager = inventoryManager
 end
 
 ------------------------------ Core API ------------------------------
@@ -69,5 +76,10 @@ end
 function InGameScene:getDryadTree()
 	return self.dryadTree
 end
+
+function InGameScene:getInventoryManager()
+	return self.inventoryManager
+end
+	
 
 return InGameScene

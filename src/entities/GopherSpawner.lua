@@ -11,7 +11,13 @@ local function spawn(dt, percentage, self, chance)
 	pos.length = math.random(500, 1000)
 	local x = pos.x + GAME.windowW * 0.5
 	local y = pos.y + GAME.windowH * 0.5
-	self.scene:addObject(Gopher("gopher_base", self.scene, x, y))
+	local id
+	if math.random() < self.stage.chonkyChance then
+		id = "gopher_chonky"
+	else
+		id = "gopher_base"
+	end
+	self.scene:addObject(Gopher(id, self.scene, x, y))
 	self.spawns = self.spawns + 1
 end
 

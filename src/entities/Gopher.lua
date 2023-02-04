@@ -3,6 +3,7 @@ local brinevector = require "libs.brinevector"
 local tween = require "libs.tween"
 
 local WorldObject = require "core.WorldObject"
+local ItemDrop = require "entities.ItemDrop"
 
 ------------------------------ Helpers ------------------------------
 
@@ -51,8 +52,8 @@ function Gopher:update(dt)
 		if self.bitesTaken == 0 then
 			self.distanceToRoot = self:_computeDistanceToRoot()
 			self.target = self.nearestRoot
-			local offset = math.random(-self.distOffset, self.distOffset)
-			self.targetDistance = self.distanceToRoot + offset
+			--local offset = math.random(-self.distOffset, self.distOffset)
+			self.targetDistance = self.distanceToRoot - self.distOffset
 		else
 			--Finished eating.
 			self.vel = self.originalPosition - self.scene:getDryadTree().pos 
@@ -62,12 +63,13 @@ function Gopher:update(dt)
 	end
 	
 	if self.target then
-		self.vel = self.nearestRoot.pos - self.pos 
+		self.vel = self.nearestRoot:getCenter() - self.pos 
 		self.vel.length = self.speed
 		--self.pos = self.pos + vel * dt
 		
 		--if within offset and tolerance, stop
-		local dist = (self.pos - self.target.pos):getLength()
+		local dist = (self.pos - self.target:getCenter()):getLength()
+		dist = dist - self.distOffset
 		if dist <= self.tolerance then
 			self.vel = brinevector(0, 0)
 			self.eating = true
@@ -101,6 +103,7 @@ end
 
 ------------------------------ Interactions ------------------------------
 function Gopher:takeDamage(damage)
+	love.audio.play(SFX.gopher_damage)
 	self.health = self.health - damage
 	self.flash = self.flashBaseDuration
 	if self.health <= 0 then
@@ -111,8 +114,18 @@ end
 ------------------------------ Callbacks ------------------------------
 function Gopher:onDeath()
 	print(self.ID .. " died.")
+	love.audio.play(SFX.gopher_death)
 	self.scene:removeObject(self)
 	GAME:getScheduler():cancel(self.wiggle)	
+	
+	if math.random() < self.dropChance then
+		self.scene:addObject(ItemDrop(self.drop, self.scene, self.pos.x, self.pos.y, 1))
+		return 
+	end
+	if math.random() < 0.5 then
+		self.scene:addObject(ItemDrop("wood_stick", self.scene, self.pos.x, self.pos.y, 
+				math.random(1, 3)))
+	end
 end
 
 ------------------------------ Internals ------------------------------
@@ -136,6 +149,7 @@ function Gopher:_attemptBite()
 	local offset = math.random(-self.biteCooldownOffset, self.biteCooldownOffset)
 	local cooldown = self.biteCooldown + offset
 	GAME:getScheduler():callAfter(cooldown, function(dt, percentage, self)
+		love.audio.play(SFX.gopher_eat)
 		self.bitesTaken = self.bitesTaken + 1
 		self.scene:getDryadTree():takeDamage(self.damage)
 		self:_attemptBite()

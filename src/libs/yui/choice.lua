@@ -11,9 +11,9 @@ local BASE = (...):gsub('choice$', '')
 local Widget = require(BASE..'widget')
 local core = require(BASE..'core')
 
-local clamp = require('lib.gear.algo').clamp
-local shadowtext = require 'lib.gear.shadowtext'
-local T = require('lib.moonspeak').translate
+local clamp = require('libs.gear.algo').clamp
+local shadowtext = require 'libs.gear.shadowtext'
+local T = require('libs.moonspeak').translate
 
 local Choice = setmetatable({
     __call = function(cls, args) return cls:new(args) end

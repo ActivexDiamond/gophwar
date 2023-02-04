@@ -19,7 +19,7 @@ function GuiTest:initialize(...)
 	local Ui = self.yui.Ui
 	local Rows = self.yui.Rows
 	local Button, Label = self.yui.Button, self.yui.Label
-    
+    print("gui ", self.gui)
     self.gui = self.yui.Ui:new {
         x = x, y = y,
 
@@ -35,6 +35,7 @@ function GuiTest:initialize(...)
             }
         }
     }	
+    print("gui ", self.gui)
 end
 
 ------------------------------ Core API ------------------------------

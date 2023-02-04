@@ -27,7 +27,12 @@ WorldObject.SPRITE_BOTTOM_CENTER = {0.5, 1}
 ------------------------------ Core API ------------------------------
 function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
-	local spr, sx, sy = AssetRegistry:getSprObj(self)
+	local spr, sx, sy
+	if self.useInvSpr then
+		spr, sx, sy = AssetRegistry:getSprInv(self)
+	else
+		spr, sx, sy = AssetRegistry:getSprObj(self)
+	end
 	local frame;
 	if spr[0] and spr[0].typeOf and spr[0]:typeOf("Drawable") then
 		frame = spr[self.currentFrame]

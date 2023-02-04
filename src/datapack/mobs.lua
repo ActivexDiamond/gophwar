@@ -1,7 +1,7 @@
 data{"gopher_base",
-	w = 32*3, h = 32*3,
+	w = 32*2, h = 32*2,
 
-	speed = 250,
+	speed = 150,
 	damage = 1,
 	health = 10,
 	
@@ -22,12 +22,17 @@ data{"gopher_base",
 
 data{"dryad_tree",
 	w = 128*3, h = 128*3,
+	health = 20,
+}
+
+data{"tree",
+	w = 32*6, h = 32*6,
 }
 
 data{"crossbow_base",
 	w = 64, h = 64,
 	spriteDirectionOffset = math.pi * 0.25,
-	cooldown = 0.3,
+	cooldown = 0.2,
 }
 
 data{"crossbow_base_arrow",

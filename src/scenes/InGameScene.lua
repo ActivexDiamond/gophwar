@@ -7,9 +7,14 @@ local Gopher = require "entities.Gopher"
 local DryadTree = require "entities.DryadTree"
 local BaseBow = require "entities.BaseBow"
 local RootController = require "entities.RootController"
+local GopherSpawner = require "entities.GopherSpawner"
+local DecorationSpawner = require "entities.DecorationSpawner"
 
 ------------------------------ Helpers ------------------------------
-
+local function rgbToLove(r, g, b, a)
+	a = a or 255
+	return r/255, g/255, b/255, a/255 
+end
 ------------------------------ Constructor ------------------------------
 local InGameScene = middleclass("InGameScene", Scene)
 function InGameScene:initialize(...)
@@ -31,10 +36,17 @@ function InGameScene:initialize(...)
 	baseBow:setRotation(90)
 	self:addObject(baseBow)
 
-	local rootController = RootController(self)
+	local rootController = GopherSpawner(self)
 	self:addObject(rootController)
 	self.rootController = rootController 
+
+	local gopherSpawner = GopherSpawner(self)
+	self:addObject(gopherSpawner)
+	self.gopherSpawner = gopherSpawner
 	
+	local decorationSpawner = DecorationSpawner(self)
+	self:addObject(decorationSpawner)
+	self.decorationSpawner = decorationSpawner		
 end
 
 ------------------------------ Core API ------------------------------
@@ -42,6 +54,15 @@ function InGameScene:update(dt)
 	Scene.update(self, dt)
 	--print((mv - tv):getLength())
 end
+
+function InGameScene:draw(g2d)
+	Scene.draw(self, g2d) 
+	g2d.setBackgroundColor(rgbToLove(33, 64, 13))
+	
+	--44, 87, 19
+	--33, 64, 13
+end
+
 ------------------------------ API ------------------------------
 
 ------------------------------ Getters / Setters ------------------------------

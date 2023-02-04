@@ -109,7 +109,7 @@ end
 
 ------------------------------ Internals ------------------------------
 function Gopher:_computeDistanceToRoot()
-	self.nearestRoot = self.scene.dryadTree
+	self.nearestRoot = self.scene:getDryadTree()
 	return (self.pos - self.nearestRoot:getCenter()):getLength() 
 end
 
@@ -129,6 +129,7 @@ function Gopher:_attemptBite()
 	local cooldown = self.biteCooldown + offset
 	GAME:getScheduler():callAfter(cooldown, function(dt, percentage, self)
 		self.bitesTaken = self.bitesTaken + 1
+		self.scene:getDryadTree():takeDamage(self.damage)
 		self:_attemptBite()
 	end, {self})
 end

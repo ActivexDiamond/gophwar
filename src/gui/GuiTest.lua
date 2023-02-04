@@ -26,12 +26,15 @@ function GuiTest:initialize(...)
         Rows {
             Label {
                 w = W, h = H,
-
-                text = "Hello, World!"
+                text = "Hello, World!",
             },
             Button {
                 text = "OBEY",
                 onHit = function () love.event.quit() end
+            },
+            Button {
+                text = "Test",
+                onHit = function () GAME.goTo(GAME.IN_GAME_SCENE_ID) end
             }
         }
     }	

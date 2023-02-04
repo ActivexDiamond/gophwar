@@ -1,8 +1,8 @@
 ---[[
 io.stdout:setvbuf('no')			--Fix for some terminals not flushing properly with Lua.
-local lovebird = require "libs.lovebird"
+--local lovebird = require "libs.lovebird"
 --Call update immediately to not miss any prints from the creation of objects or importing of files.
-lovebird:update()
+--lovebird:update()
 
 DEBUG = {
 	ECHO_EVENTS = true,
@@ -21,7 +21,7 @@ function love.load()
 end
 
 function love.update(dt)
-	lovebird:update(dt)
+	--lovebird:update(dt)
 	GAME:update(dt)
 end
 

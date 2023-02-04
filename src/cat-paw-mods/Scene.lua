@@ -1,5 +1,6 @@
 local middleclass = require "libs.middleclass"
 local State = require "cat-paw.core.patterns.state.State"
+local util = require "libs.utils"
 
 local Event = require "cat-paw.core.patterns.event.Event"
 ------------------------------ Helpers ------------------------------
@@ -22,11 +23,15 @@ end
 
 function Scene:draw(g2d)
 	State.draw(self, g2d)
+<<<<<<< HEAD
 	for obj, _ in pairs(self.objects) do
 		--for k, v in pairs(obj) do
 		--	print(k .. " " .. tostring(v))
 		--end
 		--print("=============")
+=======
+	for obj, _ in util.sortedObjects(self.objects) do
+>>>>>>> f98ab1e0bfe3f40f4d53221befec1710e573a502
 		obj:draw(g2d)
 	end
 end

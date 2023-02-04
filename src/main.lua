@@ -7,13 +7,14 @@ io.stdout:setvbuf('no')			--Fix for some terminals not flushing properly with Lu
 DEBUG = {
 	ECHO_EVENTS = true,
 	ALLOW_QUICK_EXIT = true,
+	--DRAW_BOUNDING_BOXES = true,
 }
 
 local Game = require "core.Game"
 
 local GAME_NAME = "GophWar"
-local TARGET_WINDOW_W = 1024
-local TARGET_WINDOW_H = 720
+local TARGET_WINDOW_W = -1--1024
+local TARGET_WINDOW_H = -1--720
 
 function love.load()
 	Game(GAME_NAME, TARGET_WINDOW_W,

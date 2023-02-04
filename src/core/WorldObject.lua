@@ -9,33 +9,42 @@ local brinevector = require "libs.brinevector"
 
 ------------------------------ Constructor ------------------------------
 local WorldObject = middleclass("WorldObject", Object)
-function WorldObject:initialize(id, scene, x, y, w, h)
+function WorldObject:initialize(id, scene, x, y)
 	Object.initialize(self, id)
 	self.scene = scene
 	self.pos = brinevector(x, y)
-	self.w, self.h = w, h
 	self.currentFrame = 0
 	self.rotation = 0
-	self.spriteOrigin = brinevector(0, 0)	
+	self.spriteOffset = {x = 0, y = 0}	
 end
+
+------------------------------ Constants ------------------------------
+WorldObject.SPRITE_CENTER = {0.5, 0.5}
+WorldObject.SPRITE_BOTTOM_CENTER = {0.5, 1}
 
 ------------------------------ Core API ------------------------------
 function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
 	local spr, sx, sy = AssetRegistry:getSprObj(self)
 	local frame;
-	if type(spr[1]) == 'table' then
-		frame = frame[self.currentFrame]
+	if spr[0] and spr[0].typeOf and spr[0]:typeOf("Drawable") then
+		frame = spr[self.currentFrame]
 	else
 		frame = spr
 	end
-	print(frame, self.currentFrame)
 
+	local x = self.pos.x + self.w * self.spriteOffset.x
+	local y = self.pos.y + self.h * self.spriteOffset.y
+	local ox = frame:getWidth() * self.spriteOffset.x
+	local oy = frame:getHeight() * self.spriteOffset.y
+	
 	g2d.setColor(1, 1, 1, 1)
-	g2d.draw(frame, self.pos.x, self.pos.y, self.rotation, sx, sy,
-			self.spriteOrigin.x, self.spriteOrigin.y)
-	if self.rect then
-		g2d.rectangle('line', self.pos.x, self.pos.y, self.w, self.h)
+	g2d.draw(frame, x, y, self.rotation, sx, sy, ox, oy)
+	if DEBUG.DRAW_BOUNDING_BOXES then
+		g2d.rectangle('line', self:getBoundingBox())
+		g2d.setPointSize(4)
+		local center = self:getCenter()
+		g2d.points(x, y)
 	end
 end
 
@@ -44,7 +53,19 @@ end
 ------------------------------ Getters / Setters ------------------------------
 function WorldObject:getPosition() return self.pos end
 function WorldObject:getRotation() return self.rotation end
-function WorldObject:getSpriteOrigin() return self.spriteOrigin end
+--function WorldObject:getSpriteOffset() return self.spriteOffset end
+
+function WorldObject:getCenter()
+	return brinevector(self.pos.x + self.w / 2, 
+			self.pos.y + self.h / 2)
+end
+function WorldObject:getBoundingBox()
+	local x = self.pos.x
+	local y = self.pos.y
+	local w = self.w
+	local h = self.h
+	return x, y, w, h
+end
 
 function WorldObject:setPosition(x, y)
 	self.pos.x = x
@@ -55,9 +76,15 @@ function WorldObject:setRotation(r)
 	self.rotation = r
 end
 
-function WorldObject:setSpriteOrigin(x, y)
-	self.spriteOrigin.x = x
-	self.spriteOrigin.y = y
+--Either x/y (factors to be multiplied by the sprite's pre-scaling size) or a SPRITE_ constant.
+function WorldObject:setSpriteOffset(a, b)
+	if type(a) == 'table' then
+		self.spriteOffset.x = a[1]
+		self.spriteOffset.y = a[2]
+	else
+		self.spriteOffset.x = a
+		self.spriteOffset.y = b
+	end
 end
 
 return WorldObject

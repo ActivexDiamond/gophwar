@@ -3,31 +3,34 @@ local WorldObject = require "core.WorldObject"
 
 local brinevector = require "libs.brinevector"
 
+local EvMousePress = require "cat-paw.core.patterns.event.mouse.EvMousePress"
+local Projectile = require "entities.Projectile"
+
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Gopher = middleclass("BaseBow", WorldObject)
-function Gopher:initialize(...)
+local BaseBow = middleclass("BaseBow", WorldObject)
+function BaseBow:initialize(...)
     WorldObject.initialize(self, ...)
-
+	self:setSpriteOffset(WorldObject.SPRITE_CENTER)
 end
 
-function Gopher:update(dt)
+function BaseBow:update(dt)
     local mx, my = love.mouse.getPosition();
     local mouseVector = brinevector(mx, my)
 
-    local selfVector = brinevector(self.pos.x, self.pos.y)
-
-    local test = selfVector - mouseVector;
-    --print("mv " .. test)
-    self:setSpriteOrigin(self.w / 4, self.h / 4)
-    self:setRotation(test:getAngle())
+    local dir = (self:getCenter() - mouseVector):getAngle()
+    self:setRotation(dir + self.spriteDirectionOffset)
 end
 
 ------------------------------ Core API ------------------------------
 
------------------------------- API ------------------------------
-
+------------------------------ Callbacks ------------------------------
+BaseBow[EvMousePress] = function(self, e)
+	if e.button == 2 then return end
+	print("pew")
+	local arrow = Projectile("crossbow_base_arrow", self.scene, 100, 100)
+end
 ------------------------------ Getters / Setters ------------------------------
 
-return Gopher
+return BaseBow

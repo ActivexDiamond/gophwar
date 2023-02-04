@@ -14,19 +14,29 @@ local InGameScene = middleclass("InGameScene", Scene)
 function InGameScene:initialize(...)
 	Scene.initialize(self, ...)
 
-	local treeX = (GAME.windowW / 2) - (128 / 2)
-	local treeY = (GAME.windowH / 2) - (128 / 2)
-	self.dryadTree = DryadTree("dryad_tree", self, treeX, treeY, 128, 128)
-	self.dryadTree:setDepth(1)
-	self:addObject(self.dryadTree)
+	local tree = DryadTree("dryad_tree", self, 0, 0)
+	local treeX = (GAME.windowW / 2) - (tree.w / 2)
+	local treeY = (GAME.windowH / 2) - (tree.h / 2)
+	tree:setPosition(treeX, treeY)
+	tree:setDepth(1)
+	self:addObject(tree)
+	self.dryadTree = tree
 
-	local bowX = (GAME.windowW / 2) - (64 / 2)
-	local bowY = (GAME.windowH / 2) - (64 / 2)
-	local baseBow = BaseBow("crossbow_base", self, bowX, bowY, 64, 64)
+	local baseBow = BaseBow("crossbow_base", self, 0, 0)
+	local bowX = (GAME.windowW / 2) - (baseBow.w / 2)
+	local bowY = (GAME.windowH / 2) - (baseBow.h / 2)
+	baseBow:setPosition(bowX, bowY)
 	baseBow:setDepth(12)
 	self:addObject(baseBow)
 	
-	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
+	
+	self:addObject(Gopher("gopher_base", self, 100, 100))
+	GAME:getScheduler():callAfter(3, function(dt, percentage, self)
+		self:addObject(Gopher("gopher_base", self, 10, 400))
+	end, {self})
+	GAME:getScheduler():callAfter(6, function(dt, percentage, self)
+		self:addObject(Gopher("gopher_base", self, 10, 400))
+	end, {self})
 end
 
 ------------------------------ Core API ------------------------------

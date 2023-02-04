@@ -81,9 +81,15 @@ end
 function AssetRegistry:_fetchSpr(obj, w, h, objPath, storage)
 	local path = objPath or obj.ID
 	local spr = storage[path] or self.MISSING_TEXTURE
-	if not spr.getDimensions then return spr end
-	local sprW, sprH = spr:getDimensions()
-	return spr, (w or obj.w)/sprW, (h or obj.h)/sprH
+	if spr[0] and spr[0].typeOf and spr[0]:typeOf("Drawable") then
+		--Is animation
+		local sprW, sprH = spr[obj.currentFrame]:getDimensions()
+		return spr, (w or obj.w)/sprW, (h or obj.h)/sprH
+	else
+		--Single image
+		local sprW, sprH = spr:getDimensions()
+		return spr, (w or obj.w)/sprW, (h or obj.h)/sprH
+	end
 end
 
 function AssetRegistry:_cleanDirs(dirs)
@@ -108,7 +114,7 @@ function AssetRegistry:_loadImages(dirs, destGroup, destPile)	--TODO: Better nou
 				local f, snf = utils.listFiles(file)
 				print(string.format("Loading animation (%d frames): %s", #f, file))
 				loaded = {}
-				for i = 1, #f do
+				for i = 0, #f - 1 do
 					--E.g. "assets/spr/obj/crackels/crackels_i.png"
 					local str = string.format("%s/%s_%d.png", file, snFile, i)
 					local frame = love.graphics.newImage(str)

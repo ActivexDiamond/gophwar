@@ -1,6 +1,8 @@
 local middleclass = require "libs.middleclass"
-local WorldObject = require "core.WorldObject"
 local brinevector = require "libs.brinevector"
+local tween = require "libs.tween"
+
+local WorldObject = require "core.WorldObject"
 
 ------------------------------ Helpers ------------------------------
 
@@ -8,20 +10,39 @@ local brinevector = require "libs.brinevector"
 local Gopher = middleclass("Gopher", WorldObject)
 function Gopher:initialize(...)
 	WorldObject.initialize(self, ...)
+	self:setSpriteOffset(WorldObject.SPRITE_CENTER)
 	self.bitesTaken = 0
  	self.target = nil
  	self.targetDistance = 0
  	self.eating = false
  	self.distanceToRoot = self:_computeDistanceToRoot()
  	self.originalPosition = self.pos:getCopy()
+	
+	self.wiggleCounter = 0
+	
+--	self.wiggleTweens = {
+--		tween.new(2, self, {rotation = math.pi*0.5}),
+--		tween.new(2, self, {rotation = -math.pi*0.5}),
+--	}
+--	self.activeWiggle = 0
+	self.wiggleTween = tween.new(self.wiggleDuration, self, {rotation = self.wiggleRange})
+	self.wiggleDirection = 1
 end
 
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
 	WorldObject.update(self, dt)
+	
+	local complete = self.wiggleTween:update(dt)
+	if complete then
+		self.wiggleDirection = self.wiggleDirection * -1
+		self.wiggleTween = tween.new(self.wiggleDuration, self, 
+				{rotation = self.wiggleDirection * self.wiggleRange})
+	end
+	
 	local distanceToRoot = self:_computeDistanceToRoot()
 	--Root has died.
-	if 	self.eating and self.distanceToRoot ~= distanceToRoot then
+	if self.eating and self.distanceToRoot ~= distanceToRoot then
 		self.eating = false
 		self.target = nil
 	end
@@ -60,11 +81,14 @@ function Gopher:update(dt)
 	end
 	
 	--Out of screen
-	local SW, SH = GAME.windowW, GAME.windowH
-	if self.pos.x < 0 or self.pos.x + self.w > SW or
-			self.pos.y < 0 or self.pos.y + self.h > SH then
-		print(self.ID .. " left screen.")
-		self.scene:removeObject(self)
+	if not self.eating and not self.target then
+		local SW, SH = GAME.windowW, GAME.windowH
+		if self.pos.x < 0 or self.pos.x + self.w > SW or
+				self.pos.y < 0 or self.pos.y + self.h > SH then
+			print(self.ID .. " left screen.")
+			self.scene:removeObject(self)
+			GAME:getScheduler():cancel(self.wiggle)
+		end
 	end
 end
 
@@ -75,7 +99,6 @@ function Gopher:_computeDistanceToRoot()
 end
 
 function Gopher:_attemptBite()
-	print(self.bitesTaken, #self.biteChances)
 	if not self.biteChances[self.bitesTaken + 1] then 
 		self.eating = false
 		return false
@@ -90,7 +113,6 @@ function Gopher:_attemptBite()
 	local offset = math.random(-self.biteCooldownOffset, self.biteCooldownOffset)
 	local cooldown = self.biteCooldown + offset
 	GAME:getScheduler():callAfter(cooldown, function(dt, percentage, self)
-		print "x"
 		self.bitesTaken = self.bitesTaken + 1
 		self:_attemptBite()
 	end, {self})

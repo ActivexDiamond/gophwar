@@ -11,6 +11,7 @@ local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 local Object = middleclass("Object")
 function Object:initialize(id)
 	self.ID = id
+	self.depth = 0
 	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	DataRegistry:applyStats(self)
 end
@@ -22,6 +23,10 @@ end
 
 function Object:draw(g2d)
 
+end
+
+function Object:setDepth(depth)
+	self.depth = depth;
 end
 
 ------------------------------ API ------------------------------

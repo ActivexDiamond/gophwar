@@ -75,6 +75,22 @@ function utils.rectIntersects(x, y, w, h, ox, oy, ow, oh)
 		y + h > oy
 end
 
+function utils.sortedObjects(t)
+	local keys = {}
+	for k in pairs(t) do table.insert(keys, k) end
+	table.sort(keys, function(a,b)
+		return a.depth < b.depth
+	end)
+	local i = 0
+	return function()
+		if i < #keys then
+			i = i + 1
+			return keys[i], t[keys[i]]
+		end
+	end
+end
+
+
 ------------------------------ Files ------------------------------
 function utils.listFiles(dir)
 	local fs = love.filesystem

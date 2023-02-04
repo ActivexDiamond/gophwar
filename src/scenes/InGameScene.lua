@@ -17,11 +17,15 @@ function InGameScene:initialize(...)
 
 	local treeX = (GAME.windowW / 2) - (128 / 2)
 	local treeY = (GAME.windowH / 2) - (128 / 2)
-	self:addObject(DryadTree("drayd_tree", self, treeX, treeY, 128, 128))
+	local rootTree = DryadTree("dryad_tree", self, treeX, treeY, 128, 128)
+	rootTree:setDepth(10)
+	self:addObject(rootTree)
 
 	local bowX = (GAME.windowW / 2) - (64 / 2)
 	local bowY = (GAME.windowH / 2) - (64 / 2)
-	self:addObject(BaseBow("base_bow", self, bowX, bowY, 64, 64))
+	local baseBow = BaseBow("base_bow", self, bowX, bowY, 64, 64)
+	baseBow:setDepth(12)
+	self:addObject(baseBow)
 end
 
 ------------------------------ Core API ------------------------------

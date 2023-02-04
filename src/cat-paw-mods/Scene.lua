@@ -23,15 +23,7 @@ end
 
 function Scene:draw(g2d)
 	State.draw(self, g2d)
-<<<<<<< HEAD
-	for obj, _ in pairs(self.objects) do
-		--for k, v in pairs(obj) do
-		--	print(k .. " " .. tostring(v))
-		--end
-		--print("=============")
-=======
 	for obj, _ in util.sortedObjects(self.objects) do
->>>>>>> f98ab1e0bfe3f40f4d53221befec1710e573a502
 		obj:draw(g2d)
 	end
 end
@@ -73,7 +65,7 @@ function Scene:addObject(obj)
 	--then some proper search/spatial-storage/hashing algorithm.
 	--This also gives us "out of the box" protection against objects being added twice.
 	if self.objects[obj] then return false end
-	
+
 	self.objects[obj] = true
 	return true
 end
@@ -82,11 +74,11 @@ end
 --- Will fail if object does not exist.
 function Scene:removeObject(obj)
 	if not self.object[obj] then return false end
-	
+
 	self.objects[obj] = nil
 	return true
 end
-	
+
 ------------------------------ Getters / Setters ------------------------------
 -- Returns a direct reference to its internal buffer. Changes will be reflected!
 function Scene:getObjects() return self.objects end
@@ -99,7 +91,7 @@ function Scene:clearObjects(protection)
 		error("You seem to have passed something. Did you mean to call `Scene:removeObject(obj`)?"
 				.. "\nCareful, this clears the entire object buffer!")
 	end
-	
+
 	self.objects = {}
 end
 

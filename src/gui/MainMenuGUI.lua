@@ -13,9 +13,10 @@ end
 local GuiTest = middleclass("GuiTest", AGuiManager)
 function GuiTest:initialize(...)
 	AGuiManager.initialize(self, ...)
-    local W, H = 400, 80  -- pick arbitrary UI size
+    local W, H = 400, 100  -- pick arbitrary UI size
     local x, y = centerRectOnScreen(W, H)
-    
+    y = 60
+
 	local Ui = self.yui.Ui
 	local Rows = self.yui.Rows
 	local Button, Label = self.yui.Button, self.yui.Label
@@ -24,18 +25,39 @@ function GuiTest:initialize(...)
         x = x, y = y,
 
         Rows {
+            padding = 5,
             Label {
                 w = W, h = H,
-                text = "Hello, World!",
+                text = "GophWar",
             },
             Button {
-                text = "OBEY",
-                onHit = function () love.event.quit() end
+                h = 60,
+                text = "Start",
+                onHit = function () GAME:goTo(GAME.IN_GAME_SCENE_ID) end
+            },
+            Button {
+                text = "Options",
+                onHit = function () GAME:goTo(GAME.OPTIONS_MENU_SCENE_ID) end
+            },
+            Button {
+                text = "Credit",
+                onHit = function () GAME:goTo(GAME.CREDIT_MENU_SCENE_ID) end
+            },
+            Button {
+                text = "Tutorial",
+                onHit = function () GAME:goTo(GAME.TUTORIAL_MENU_SCENE_ID) end
             },
             Button {
                 text = "Test",
-                onHit = function () GAME.goTo(GAME.IN_GAME_SCENE_ID) end
-            }
+                onHit = function () print("Pressed!") end
+            },
+            Button {
+                text = "Exit",
+                onHit = function () love.event.quit() end
+            },
+            Label {
+                text = "The UI Might not work sometimes, so you have to press the button multiple times",
+            },
         }
     }	
     print("gui ", self.gui)

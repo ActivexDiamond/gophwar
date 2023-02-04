@@ -5,7 +5,7 @@ local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
 local EvKeyPress = require "cat-paw.core.patterns.event.keyboard.EvKeyPress"
 
 local DummyObject = require "debugging.DummyObject"
-local GuiTest = require "gui.GuiTest"
+local MainMenuGUI = require "gui.MainMenuGUI"
 
 ------------------------------ Helpers ------------------------------
 
@@ -15,7 +15,7 @@ function MainMenuScene:initialize(...)
 	Scene.initialize(self, ...)
 	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
 	self:addObject(DummyObject("iron_oreblock", self, 32, 32, 32, 32))
-	self:addObject(GuiTest())
+	self:addObject(MainMenuGUI())
 end
 
 ------------------------------ Core API ------------------------------

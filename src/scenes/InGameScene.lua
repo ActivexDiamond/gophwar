@@ -14,16 +14,13 @@ local InGameScene = middleclass("InGameScene", Scene)
 function InGameScene:initialize(...)
 	Scene.initialize(self, ...)
 
+	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
+
 	local treeX = (GAME.windowW / 2) - (128 / 2)
 	local treeY = (GAME.windowH / 2) - (128 / 2)
 	self.dryadTree = DryadTree("dryad_tree", self, treeX, treeY, 128, 128)
 	self.dryadTree:setDepth(1)
 	self:addObject(self.dryadTree)
-
-	self:addObject(Gopher("base_gopher", self, 100, 100, 32, 32))
-	self.rootTree = DryadTree("dryad_tree", self, treeX, treeY, 128, 128)
-	self.rootTree:setDepth(2)
-	self:addObject(self.rootTree)
 
 	local bowX = (GAME.windowW / 2) - (64 / 2)
 	local bowY = (GAME.windowH / 2) - (64 / 2)

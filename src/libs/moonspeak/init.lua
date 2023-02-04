@@ -11,7 +11,7 @@
 -- @copyright 2022 The DoubleFourteen Code Forge
 -- @author Lorenzo Cogotti
 
-local serialize = require 'lib.serialize'
+local serialize = require 'libs.serialize'
 
 local moonspeak = {
     --- (string) current locale language.

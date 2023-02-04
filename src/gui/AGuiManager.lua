@@ -16,6 +16,7 @@ local AGuiManager = middleclass("AGuiManager")
 function AGuiManager:initialize()
 	assert(self.class ~= AGuiManager, "Cannot init abstract class.")
 	GAME:getEventSystem():attach(self, EventSystem.ATTACH_TO_ALL)
+	self.depth = 0
 	self.yui = yui
 end
 

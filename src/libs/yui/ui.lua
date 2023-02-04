@@ -15,7 +15,7 @@ local Layout = require(BASE..'layout')
 local Columns = require(BASE..'columns')
 local Rows = require(BASE..'rows')
 local theme = require(BASE..'theme')
-local gear = require 'lib.gear'
+local gear = require 'libs.gear'
 
 local Timer = gear.Timer
 local isinstance = gear.meta.isinstance

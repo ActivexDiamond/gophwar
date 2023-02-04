@@ -11,8 +11,8 @@ local BASE = (...):gsub('checkbox$', '')
 local Widget = require(BASE..'widget')
 local core = require(BASE..'core')
 
-local shadowtext = require 'lib.gear.shadowtext'
-local T = require('lib.moonspeak').translate
+local shadowtext = require 'libs.gear.shadowtext'
+local T = require('libs.moonspeak').translate
 
 local Checkbox = setmetatable({
     __call = function(cls, args) return cls:new(args) end

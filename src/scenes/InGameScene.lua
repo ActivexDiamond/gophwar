@@ -3,7 +3,7 @@ local Scene = require "cat-paw-mods.Scene"
 
 local Gopher = require "entities.Gopher"
 local DryadTree = require "entities.DryadTree"
-local BaseBow = require "entities.BaseBow"
+--local BaseBow = require "entities.BaseBow"
  
 ------------------------------ Helpers ------------------------------
 
@@ -21,7 +21,7 @@ function InGameScene:initialize(...)
 
 	local bowX = (GAME.windowW / 2) - (64 / 2)
 	local bowY = (GAME.windowH / 2) - (64 / 2)
-	self:addObject(BaseBow("base_bow", self, bowX, bowY, 64, 64))
+--	self:addObject(BaseBow("base_bow", self, bowX, bowY, 64, 64))
 end
 
 ------------------------------ Core API ------------------------------

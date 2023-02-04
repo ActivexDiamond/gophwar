@@ -16,7 +16,7 @@ local BASE = (...):gsub('layout$', '')
 local Widget = require(BASE..'widget')
 local core = require(BASE..'core')
 
-local gear = require 'lib.gear'
+local gear = require 'libs.gear'
 
 local isinstance = gear.meta.isinstance
 local rectunion = gear.rect.union

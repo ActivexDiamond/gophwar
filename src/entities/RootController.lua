@@ -3,6 +3,8 @@ local Object = require "core.Object"
 local Root = require "entities.Root"
 local WorldObject = require "core.WorldObject"
 
+local brinevector = require "libs.brinevector"
+
 ------------------------------ Helpers ------------------------------
 ------------------------------ Constructor ------------------------------
 local RootController = middleclass("RootController", Object)
@@ -10,7 +12,15 @@ function RootController:initialize(scene)
 	Object.initialize(self, "root_controller")
 	self.scene = scene
 	
-	self:_addRoot(100, 100)
+	local dist = 128 * 2
+	local tree = self.scene:getDryadTree():getCenter()
+	for a = 0, math.pi * 2, math.pi  /32 do
+		local pos = brinevector(1, 1)
+		pos.angle = a
+		pos.length = dist
+		
+		self:_addRoot(tree.x + pos.x, tree.y + pos.y, pos.angle)
+	end
 end
 
 ------------------------------ Core API ------------------------------

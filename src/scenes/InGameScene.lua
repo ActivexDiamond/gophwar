@@ -44,8 +44,9 @@ function InGameScene:initialize(...)
 	self:addObject(rootController)
 	self.rootController = rootController 
 
-	local gopherSpawner = GopherSpawner(self)
-	self:addObject(gopherSpawner)
+	local gopherSpawnerDup = GopherSpawner(self)
+	self:addObject(gopherSpawnerDup)
+	
 	local gopherSpawner = GopherSpawner(self)
 	self:addObject(gopherSpawner)
 	self.gopherSpawner = gopherSpawner

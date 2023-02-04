@@ -18,7 +18,7 @@ function RootController:initialize(scene)
 --		self:_addRoot(x + (32*3 * i), y, math.pi / 2)
 	end
 	
-	self:_addRootCircle(256, math.pi/8)
+	--self:_addRootCircle(256, math.pi/8)
 	--self:_addRootCircle(220, math.pi/28)
 end
 

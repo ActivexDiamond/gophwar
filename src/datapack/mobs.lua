@@ -48,7 +48,7 @@ data{"gopher_chonky",
 }
 
 data{"dryad_tree",
-	w = 128*3, h = 128*3,
+	w = 128*5, h = 128*5,
 	health = 500,
 	--flashBaseDuration = 2,
 	shakeBaseDuration = 2,

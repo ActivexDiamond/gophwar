@@ -75,6 +75,7 @@ function utils.rectIntersects(x, y, w, h, ox, oy, ow, oh)
 		y + h > oy
 end
 
+--[=[ No longer using object-keys in Scene so this is no longer needed. Just directly use table.sort.
 function utils.sortedObjects(t)
 	local keys = {}
 	for k in pairs(t) do table.insert(keys, k) end
@@ -89,7 +90,7 @@ function utils.sortedObjects(t)
 		end
 	end
 end
-
+--]=]
 
 ------------------------------ Files ------------------------------
 function utils.listFiles(dir)

@@ -31,6 +31,7 @@ WorldObject.SPRITE_BOTTOM_CENTER = {0.5, 1}
 ------------------------------ Core API ------------------------------
 function WorldObject:draw(g2d)
 	Object.draw(self, g2d)
+	---[[
 	if self.rect then
 		g2d.setColor(0.3, 0.3, 0.3, 0.7)
 		local mode = self.filled and "fill" or "line"
@@ -67,7 +68,7 @@ function WorldObject:draw(g2d)
 		g2d.setColor(1, 1, 1, 1)
 	end
 	g2d.draw(frame, x, y, self.rotation, sx, sy, ox, oy)
-
+	--]]
 end
 
 ------------------------------ API ------------------------------

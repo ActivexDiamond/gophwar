@@ -1,22 +1,22 @@
 local middleclass = require "libs.middleclass"
 local brinevector = require "libs.brinevector"
 
-local WorldObject = require "core.WorldObject"
+local PhysicsObject = require "core.PhysicsObject"
 local Gopher = require "entities.Gopher"
 
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Projectile = middleclass("Projectile", WorldObject)
+local Projectile = middleclass("Projectile", PhysicsObject)
 function Projectile:initialize(...)
-	WorldObject.initialize(self, ...)
+	PhysicsObject.initialize(self, ...)
 	love.audio.play(SFX.arrow_shoot)
 	self.depth = 99
 end
 
 ------------------------------ Core API ------------------------------
 function Projectile:update(dt)
-	WorldObject.update(self, dt)
+	PhysicsObject.update(self, dt)
 	
 	self.vel = brinevector(1, 1)
 	self.vel.length = self.speed
@@ -26,7 +26,6 @@ function Projectile:update(dt)
 	local SW, SH = GAME.windowW, GAME.windowH
 	if self.pos.x < 0 or self.pos.x + self.w > SW or
 			self.pos.y < 0 or self.pos.y + self.h > SH then
-		print(self.ID .. " left screen.")
 		self.scene:removeObject(self)
 	end
 end

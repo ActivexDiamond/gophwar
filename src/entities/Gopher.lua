@@ -2,16 +2,16 @@ local middleclass = require "libs.middleclass"
 local brinevector = require "libs.brinevector"
 local tween = require "libs.tween"
 
-local WorldObject = require "core.WorldObject"
+local PhysicsObject = require "core.PhysicsObject"
 local ItemDrop = require "entities.ItemDrop"
 
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Gopher = middleclass("Gopher", WorldObject)
+local Gopher = middleclass("Gopher", PhysicsObject)
 function Gopher:initialize(...)
-	WorldObject.initialize(self, ...)
-	self:setSpriteOffset(WorldObject.SPRITE_CENTER)
+	PhysicsObject.initialize(self, ...)
+	self:setSpriteOffset(PhysicsObject.SPRITE_CENTER)
 	self.bitesTaken = 0
  	self.target = nil
  	self.targetDistance = 0
@@ -31,6 +31,7 @@ end
 
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
+	--[[
 	WorldObject.update(self, dt)
 	self.vel = brinevector(0, 0)
 	local complete = self.wiggleTween:update(dt)
@@ -99,6 +100,7 @@ function Gopher:update(dt)
 	else
 		self.flipSpriteX = -1
 	end
+	--]]
 end
 
 ------------------------------ Interactions ------------------------------
@@ -113,16 +115,18 @@ end
 
 ------------------------------ Callbacks ------------------------------
 function Gopher:onDeath()
-	print(self.ID .. " died.")
 	love.audio.play(SFX.gopher_death)
-	self.scene:removeObject(self)
+	--lf.scene:removeObject(self)
 	GAME:getScheduler():cancel(self.wiggle)	
 	
 	if math.random() < self.dropChance then
 		self.scene:addObject(ItemDrop(self.drop, self.scene, self.pos.x, self.pos.y, 1))
+--		self.scene:addObject(ItemDrop(self.drop, self.scene, math.random(GAME.windowW), math.random(GAME.windowH), 1))
 		return 
 	end
 	if math.random() < 0.8 then
+--		self.scene:addObject(ItemDrop("wood_stick", math.random(GAME.windowW), math.random(GAME.windowH), 
+--				math.random(1, 6)))
 		self.scene:addObject(ItemDrop("wood_stick", self.scene, self.pos.x, self.pos.y, 
 				math.random(1, 6)))
 	end

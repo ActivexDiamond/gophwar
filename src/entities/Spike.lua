@@ -2,23 +2,23 @@ local middleclass = require "libs.middleclass"
 local brinevector = require "libs.brinevector"
 local tween = require "libs.tween"
 
-local WorldObject = require "core.WorldObject"
+local PhysicsObject = require "core.PhysicsObject"
 local Gopher = require "entities.Gopher"
 
 ------------------------------ Helpers ------------------------------
 
 ------------------------------ Constructor ------------------------------
-local Spike = middleclass("Spike", WorldObject)
+local Spike = middleclass("Spike", PhysicsObject)
 function Spike:initialize(...)
-	WorldObject.initialize(self, ...)
-	self:setSpriteOffset(WorldObject.SPRITE_CENTER)
+	PhysicsObject.initialize(self, ...)
+	self:setSpriteOffset(PhysicsObject.SPRITE_CENTER)
 	self.hitGophers = setmetatable({}, {__mode = "kv"})
 	print("spike init", self.scene)
 end
 
 ------------------------------ Core API ------------------------------
 function Spike:update(dt)
-	WorldObject.update(self, dt)
+	PhysicsObject.update(self, dt)
 	print"xxx"
 end
 

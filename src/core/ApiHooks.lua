@@ -36,11 +36,11 @@ end
 function ApiHooks.static._hookLoveCallbacks(handler)
 	local wrap = ApiHooks._loveCallbackWrapper
 	--Game
-	if handler.run then love.run = handler.run 
+	if handler.run then love.run = wrap(handler, handler.run) 
 	else
-		handler.load = handler.load
-		handler.update = handler.tick
-		handler.draw = handler.draw
+		love.load = wrap(handler, handler.load)
+		love.update = wrap(handler, handler.update)
+		love.draw = wrap(handler, handler.draw)
 	end
 	--Evsys
 	

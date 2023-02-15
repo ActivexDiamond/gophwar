@@ -50,7 +50,7 @@ end
 
 function Game:draw(g2d)
 	shack:apply()
-	AbstractGame.draw(self, g2d)
+	AbstractGame.draw(self, love.graphics)
 end
 
 ------------------------------ Internals ------------------------------

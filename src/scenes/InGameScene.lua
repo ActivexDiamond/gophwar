@@ -1,3 +1,5 @@
+local jitp = require "jit.p"
+
 local middleclass = require "libs.middleclass"
 local brinevector = require "libs.brinevector"
 
@@ -72,12 +74,23 @@ function InGameScene:initialize(...)
 	self.inventoryManager = inventoryManager
 	
 	self:addObject(Gopher("gopher_base", self, 200, 200))
+	self.args = "3si4m1A"
+	jitp.start(self.args)
 end
 
 ------------------------------ Core API ------------------------------
+local frames = 0
 function InGameScene:update(dt)
 	Scene.update(self, dt)
-	--print((mv - tv):getLength())
+	if frames % 60*5 == 0 then
+		local a, b, c = jitp.stop()
+		if a or b or c then
+			print("===== Got something:", a, b, c)
+		end
+		print("===============")
+		jitp.start(self.args)
+	end
+	frames = frames + 1
 end
 
 function InGameScene:draw(g2d)

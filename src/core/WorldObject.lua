@@ -64,10 +64,9 @@ function WorldObject:draw(g2d)
 	if self.flash > 0 then
 		g2d.setColor(1, 0, 0, 1)
 		self.flash = self.flash - 1
-	else
-		g2d.setColor(1, 1, 1, 1)
 	end
 	g2d.draw(frame, x, y, self.rotation, sx, sy, ox, oy)
+	g2d.setColor(1, 1, 1, 1)
 	--]]
 end
 

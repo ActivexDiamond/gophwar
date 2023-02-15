@@ -32,15 +32,6 @@ function love.load()
 			TARGET_WINDOW_H)
 end
 
-function love.update(dt)
-	--lovebird:update(dt)
-	GAME:update(dt)
-end
-
-function love.draw()
-	local g2d = love.graphics
-	GAME:draw(g2d)
-end
 
 --]]
 

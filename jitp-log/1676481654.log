@@ -1,0 +1,230 @@
+=============== Next Dump ===============
+33%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+25%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+17%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+ 8%  middleclass.lua:__index < DryadTree.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+ 8%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+ 8%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+=============== Next Dump ===============
+50%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+25%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+13%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+13%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+=============== Next Dump ===============
+29%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+14%  AssetRegistry.lua:getSprInv < InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+14%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+14%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Interpreted
+14%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+14%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+=============== Next Dump ===============
+33%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+22%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 50%  Compiled
+  <- 50%  C code
+11%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+11%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+11%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+11%  bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update
+  <- 100%  JIT Compiler
+=============== Next Dump ===============
+[No samples collected]
+aw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+20%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+20%  bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  Garbage Collector
+20%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+=============== Next Dump ===============
+31%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+31%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 50%  C code
+  <- 25%  Compiled
+  <- 25%  JIT Compiler
+ 8%  InventoryManager.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update
+  <- 100%  C code
+ 8%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+ 8%  middleclass.lua:__index < EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update
+  <- 100%  JIT Compiler
+ 8%  middleclass.lua:new < Event.lua:EvMouseMove < ApiHooks.lua:93 < [love "callbacks.lua"]:144 < xpcall
+  <- 100%  Interpreted
+ 8%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  JIT Compiler
+=============== Next Dump ===============
+15%  Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw
+  <- 100%  JIT Compiler
+15%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 50%  C code
+  <- 50%  JIT Compiler
+ 8%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+ 8%  AssetRegistry.lua:getSprObj < WorldObject.lua:draw < DryadTree.lua:draw < Scene.lua:draw < InGameScene.lua:draw
+  <- 100%  Compiled
+ 8%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+ 8%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+ 8%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+ 8%  Gopher.lua:_computeDistanceToRoot < Gopher.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  C code
+ 8%  GopherSpawner.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update
+  <- 100%  JIT Compiler
+ 8%  brinevector.lua:__index < brinevector.lua:__newindex < Gopher.lua:update < Scene.lua:update < InGameScene.lua:update
+  <- 100%  Interpreted
+ 8%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  Interpreted
+=============== Next Dump ===============
+22%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+22%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+11%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+11%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+11%  WorldObject.lua:draw < DryadTree.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  C code
+11%  Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw
+  <- 100%  JIT Compiler
+11%  ItemDrop.lua:24 < EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update
+  <- 100%  JIT Compiler
+=============== Next Dump ===============
+22%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+11%  Gopher.lua:_computeDistanceToRoot < Gopher.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  JIT Compiler
+11%  tween.lua:checkNewParams < tween.lua:new < Gopher.lua:update < Scene.lua:update < InGameScene.lua:update
+  <- 100%  JIT Compiler
+11%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+11%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+11%  Game.lua:update < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  JIT Compiler
+11%  middleclass.lua:__index < middleclass.lua:isInstanceOf < Profiler.lua:68 < EventSystem.lua:_fire < EventSystem.lua:poll
+  <- 100%  JIT Compiler
+11%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  Compiled
+=============== Next Dump ===============
+27%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 67%  C code
+  <- 33%  JIT Compiler
+18%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  JIT Compiler
+18%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+ 9%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+ 9%  middleclass.lua:__index < middleclass.lua:ItemDrop < Gopher.lua:onDeath < Gopher.lua:takeDamage < Projectile.lua:onCollision
+  <- 100%  Compiled
+ 9%  Scheduler.lua:processAll < Scheduler.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Interpreted
+ 9%  brinevector.lua:brinevector < Projectile.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  Interpreted
+=============== Next Dump ===============
+15%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+15%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+15%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 50%  Compiled
+  <- 50%  C code
+15%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+ 8%  Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw
+  <- 100%  Garbage Collector
+ 8%  tween.lua:checkNewParams < tween.lua:new < Gopher.lua:update < Scene.lua:update < InGameScene.lua:update
+  <- 100%  JIT Compiler
+ 8%  tween.lua:copyTables < tween.lua:checkSubjectAndTargetRecursively < tween.lua:checkNewParams < tween.lua:new < Gopher.lua:update
+  <- 100%  JIT Compiler
+ 8%  bump.lua:rect_getSegmentIntersectionIndices < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move
+  <- 100%  JIT Compiler
+ 8%  WorldObject.lua:getBoundingBox < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  Interpreted
+=============== Next Dump ===============
+100%  Event.lua:EvMouseRelease < ApiHooks.lua:90 < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  Garbage Collector
+=============== Next Dump ===============
+30%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 67%  JIT Compiler
+  <- 33%  C code
+10%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+10%  BaseBow.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update
+  <- 100%  Interpreted
+10%  middleclass.lua:__index < EvMouseClick.lua:initialize < EvMouseRelease.lua:initialize < middleclass.lua:new < Event.lua:EvMouseRelease
+  <- 100%  Interpreted
+10%  shack.lua:apply < Game.lua:draw < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  JIT Compiler
+10%  bump.lua:rect_getSegmentIntersectionIndices < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move
+  <- 100%  JIT Compiler
+10%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+10%  AssetRegistry.lua:getSprObj < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  Compiled
+=============== Next Dump ===============
+22%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 50%  C code
+  <- 50%  JIT Compiler
+22%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 50%  Interpreted
+  <- 50%  C code
+11%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+11%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+11%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+11%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+11%  middleclass.lua:__index < middleclass.lua:__index < middleclass.lua:isInstanceOf < Profiler.lua:56 < EventSystem.lua:_fire
+  <- 100%  JIT Compiler
+=============== Next Dump ===============
+100%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+=============== Next Dump ===============
+38%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+25%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+13%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+13%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+13%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  Compiled
+=============== Next Dump ===============
+29%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+29%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+29%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+14%  bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  JIT Compiler
+=============== Next Dump ===============

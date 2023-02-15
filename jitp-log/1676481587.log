@@ -1,0 +1,140 @@
+=============== Next Dump ===============100%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+=============== Next Dump ===============38%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+25%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+13%  AssetRegistry.lua:getSprObj < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+13%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+13%  WorldObject.lua:draw < DryadTree.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+=============== Next Dump ===============[No samples collected]
+aw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+20%  AssetRegistry.lua:getSprObj < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  Compiled
+20%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+20%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+20%  Profiler.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+=============== Next Dump ===============50%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+50%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+=============== Next Dump ===============100%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+=============== Next Dump ============================== Next Dump ===============50%  DryadTree.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+50%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+=============== Next Dump ===============[No samples collected]
+[No samples collected]
+[No samples collected]
+[No samples collected]
+ntoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  Compiled
+=============== Next Dump ===============64%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+14%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+ 7%  WorldObject.lua:getBoundingBox < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+ 7%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+ 7%  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  <- 100%  JIT Compiler
+=============== Next Dump ===============40%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+30%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+10%  bump.lua:getDictItemsInCellRect < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update
+  <- 100%  JIT Compiler
+10%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  Compiled
+10%  Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw
+  <- 100%  Compiled
+=============== Next Dump ===============20%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+20%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+20%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  C code
+20%  middleclass.lua:__index < GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  Interpreted
+20%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+=============== Next Dump ===============67%  InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144
+  <- 100%  C code
+33%  middleclass.lua:isSubclassOf < middleclass.lua:isSubclassOf < middleclass.lua:isSubclassOf < middleclass.lua:isSubclassOf < middleclass.lua:isInstanceOf
+  <- 100%  JIT Compiler
+=============== Next Dump ============================== Next Dump ===============[No samples collected]
+[No samples collected]
+[No samples collected]
+ 100%  C code
+20%  GopherSpawner.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  C code
+20%  shack.lua:lerp < shack.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall
+  <- 100%  JIT Compiler
+20%  EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  <- 100%  JIT Compiler
+=============== Next Dump ===============33%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+17%  WorldObject.lua:getCenter < BaseBow.lua:30 < EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update
+  <- 100%  C code
+17%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+17%  brinevector.lua:__add < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update
+  <- 100%  JIT Compiler
+17%  middleclass.lua:__index < EventSystem.lua:_fire < EventSystem.lua:poll < AbstractGame.lua:update < Game.lua:update
+  <- 100%  Compiled
+=============== Next Dump ============================== Next Dump ===============[No samples collected]
+[No samples collected]
+=============== Next Dump ===============[No samples collected]
+[No samples collected]
+[No samples collected]
+ire < EventSystem.lua:poll < AbstractGame.lua:update
+  <- 100%  Interpreted
+25%  bump.lua:project < bump.lua:response < bump.lua:check < bump.lua:move < Scene.lua:update
+  <- 100%  JIT Compiler
+25%  InventoryManager.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+25%  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw
+  <- 100%  JIT Compiler
+=============== Next Dump ===============100%  AssetRegistry.lua:getSprObj < WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw
+  <- 100%  JIT Compiler
+=============== Next Dump ===============25%  bump.lua:rect_getSegmentIntersectionIndices < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:response < bump.lua:check
+  <- 60%  JIT Compiler
+  <- 20%  Interpreted
+  <- 20%  C code
+20%  bump.lua:rect_getSegmentIntersectionIndices < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move
+  <- 50%  JIT Compiler
+  <- 50%  C code
+15%  bump.lua:nearest < bump.lua:rect_getNearestCorner < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check
+  <- 67%  C code
+  <- 33%  JIT Compiler
+10%  bump.lua:rect_detectCollision < bump.lua:project < bump.lua:response < bump.lua:check < bump.lua:move
+  <- 50%  Compiled
+  <- 50%  JIT Compiler
+ 5%  bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update
+  <- 100%  JIT Compiler
+ 5%  bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update
+  <- 100%  Interpreted
+ 5%  bump.lua:getDictItemsInCellRect < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update
+  <- 100%  Compiled
+ 5%  bump.lua:332 < sort < bump.lua:project < bump.lua:response < bump.lua:check
+  <- 100%  Compiled
+ 5%  bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update
+  <- 100%  JIT Compiler
+ 5%  bump.lua:assertIsRect < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update
+  <- 100%  Interpreted
+=============== Next Dump ============================== Next Dump ===============[No samples collected]
+[No samples collected]
+=============== Next Dump ===============[No samples collected]
+[No samples collected]
+ces < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move
+  <- 100%  C code
+=============== Next Dump ===============

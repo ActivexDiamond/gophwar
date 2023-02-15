@@ -1,0 +1,7 @@
+100%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+100%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code
+[No samples collected]
+100%  [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  <- 100%  C code

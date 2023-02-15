@@ -31,8 +31,8 @@ end
 
 ------------------------------ Core API ------------------------------
 function Gopher:update(dt)
-	--[[
-	WorldObject.update(self, dt)
+	---[[
+	PhysicsObject.update(self, dt)
 	self.vel = brinevector(0, 0)
 	local complete = self.wiggleTween:update(dt)
 	if complete then

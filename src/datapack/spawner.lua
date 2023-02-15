@@ -22,7 +22,7 @@ data{"gopher_spawner",
 			chance = 0.4,
 			chonkyChance = 0.5,
 		},{--5
-			cooldown = 3.3,--0.7,
+			cooldown = 0.3,--0.7,
 			chance = 0,--0.4,
 			chonkyChance = 0,--0.8,
 		},		

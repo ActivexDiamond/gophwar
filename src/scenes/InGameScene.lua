@@ -74,8 +74,12 @@ function InGameScene:initialize(...)
 	self.inventoryManager = inventoryManager
 	
 	self:addObject(Gopher("gopher_base", self, 200, 200))
-	self.args = "3si4m1A"
-	jitp.start(self.args)
+	--self.args = "i1Flv4"
+	self.args = "Fv5"
+	self.tempLogFile = "jitp-log/temp.log"
+	self.jitpLogFile = "jitp-log/" .. os.time() .. ".log"
+	jitp.start(self.args, self.tempLogFile)
+	self.jitpLog = ""
 end
 
 ------------------------------ Core API ------------------------------
@@ -83,12 +87,21 @@ local frames = 0
 function InGameScene:update(dt)
 	Scene.update(self, dt)
 	if frames % 60*5 == 0 then
-		local a, b, c = jitp.stop()
-		if a or b or c then
-			print("===== Got something:", a, b, c)
-		end
-		print("===============")
-		jitp.start(self.args)
+		jitp.stop()
+		local temp = assert(io.open(self.tempLogFile, 'r'))
+		self.jitpLog = temp:read("*all")
+		temp:close()
+		
+		local log = assert(io.open(self.jitpLogFile, "a"))
+		log:write(self.jitpLog)
+		io.write(self.jitpLog)
+		log:write("=============== Next Dump ===============\n")
+		io.write("=============== Next Dump ===============\n")
+		log:close()
+		
+--		print(str)
+--		print("===============")
+		jitp.start(self.args, self.tempLogFile)
 	end
 	frames = frames + 1
 end
@@ -96,7 +109,8 @@ end
 function InGameScene:draw(g2d)
 	Scene.draw(self, g2d) 
 	g2d.setBackgroundColor(rgbToLove(33, 64, 13))
-	
+	g2d.print("Usage Statistics:", 200, 0)
+	g2d.print(self.jitpLog, 200, 16)
 	
 	--44, 87, 19
 	--33, 64, 13

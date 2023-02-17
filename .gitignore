@@ -29,3 +29,7 @@ Temporary Items
 .apdisk
 
 *.bat
+
+# Project Specific
+jitp-log
+backups

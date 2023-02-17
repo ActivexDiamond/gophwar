@@ -75,7 +75,8 @@ function InGameScene:initialize(...)
 	
 	self:addObject(Gopher("gopher_base", self, 200, 200))
 	--self.args = "i1Flv4"
-	self.args = "Fv5"
+	--self.args = "Fl10r"
+	self.args = "Fl10r"
 	self.tempLogFile = "jitp-log/temp.log"
 	self.jitpLogFile = "jitp-log/" .. os.time() .. ".log"
 	jitp.start(self.args, self.tempLogFile)
@@ -86,7 +87,7 @@ end
 local frames = 0
 function InGameScene:update(dt)
 	Scene.update(self, dt)
-	if frames % 60*5 == 0 then
+	if frames % 100 == 0 then
 		jitp.stop()
 		local temp = assert(io.open(self.tempLogFile, 'r'))
 		self.jitpLog = temp:read("*all")

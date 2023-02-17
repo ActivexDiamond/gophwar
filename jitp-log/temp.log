@@ -1,2 +1,58 @@
-[No samples collected]
-[No samples collected]
+   20  bump.lua:rect_getSegmentIntersectionIndices < bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  --    18  bump.lua:100
+  --     2  bump.lua:91
+   13  bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall
+  --     5  bump.lua:481
+  --     2  bump.lua:480
+  --     1  bump.lua:473
+  --     1  bump.lua:470
+  --     1  bump.lua:454
+  --     1  bump.lua:461
+  --     1  bump.lua:469
+  --     1  bump.lua:457
+   13  bump.lua:getDictItemsInCellRect < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  --     8  bump.lua:375
+  --     3  bump.lua:376
+  --     1  bump.lua:369
+  --     1  bump.lua:373
+   12  bump.lua:project < bump.lua:response < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  --     6  bump.lua:473
+  --     3  bump.lua:481
+  --     2  bump.lua:470
+  --     1  bump.lua:469
+   12  Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  --     7  Scene.lua:35
+  --     3  Scene.lua:36
+  --     1  Scene.lua:30
+  --     1  Scene.lua:31
+   11  bump.lua:getDictItemsInCellRect < bump.lua:project < bump.lua:response < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  --     8  bump.lua:375
+  --     2  bump.lua:376
+  --     1  bump.lua:373
+   10  Gopher.lua:update < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  --     3  Gopher.lua:67
+  --     2  Gopher.lua:36
+  --     2  Gopher.lua:72
+  --     2  Gopher.lua:37
+  --     1  Gopher.lua:68
+    7  WorldObject.lua:draw < Scene.lua:draw < InGameScene.lua:draw < Fsm.lua:draw < AbstractGame.lua:draw < Game.lua:draw < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  --     4  WorldObject.lua:69
+  --     1  WorldObject.lua:71
+  --     1  WorldObject.lua:47
+  --     1  WorldObject.lua:61
+    7  bump.lua:response < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall
+  --     7  bump.lua:291
+    6  bump.lua:rect_detectCollision < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  --     4  bump.lua:198
+  --     1  bump.lua:199
+  --     1  bump.lua:191
+    6  bump.lua:rect_detectCollision < bump.lua:project < bump.lua:response < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update
+  --     5  bump.lua:160
+  --     1  bump.lua:161
+    5  bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144 < xpcall < [love "boot.lua"]:337
+  --     2  bump.lua:711
+  --     1  bump.lua:731
+  --     1  bump.lua:726
+  --     1  bump.lua:707
+    5  bump.lua:getRect < bump.lua:project < bump.lua:check < bump.lua:move < Scene.lua:update < InGameScene.lua:update < Fsm.lua:update < AbstractGame.lua:update < Game.lua:update < [love "callbacks.lua"]:144
+  --     5  bump.lua:529

@@ -22,6 +22,11 @@ function Game:initialize(...)
 	print("Starting game... " .. self.title)
 	print(string.format("Window size: (%d, %d)", self.windowW, self.windowH))
 	self:_loadAllAssets()
+	
+	self.SCALE = 3
+	self.windowW = self.windowW / self.SCALE
+	self.windowH = self.windowH / self.SCALE  
+	
 	GAME = self
 	self:add(Game.MAIN_MENU_SCENE_ID, MainMenuScene())
 	self:add(Game.OPTIONS_MENU_SCENE_ID, OptionsMenuScene())
@@ -48,9 +53,10 @@ function Game:update(dt)
 	shack:update(dt)
 end
 
-function Game:draw(g2d)
+function Game:draw()
+	local g2d = love.graphics
 	shack:apply()
-	AbstractGame.draw(self, love.graphics)
+	AbstractGame.draw(self, g2d)
 end
 
 ------------------------------ Internals ------------------------------

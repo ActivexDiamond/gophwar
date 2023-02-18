@@ -1,5 +1,5 @@
 data{"gopher_base",
-	w = 32*2, h = 32*2,
+	w = 32, h = 32,
 	flashBaseDuration = 5,
 	speed = 150,
 	damage = 1,
@@ -23,7 +23,7 @@ data{"gopher_base",
 }
 
 data{"gopher_chonky",
-	w = 32*2, h = 32*2,
+	w = 32, h = 32,
 	flashBaseDuration = 5,
 	speed = 100,
 	damage = 3,
@@ -48,14 +48,14 @@ data{"gopher_chonky",
 }
 
 data{"dryad_tree",
-	w = 128*5, h = 128*5,
+	w = 128, h = 128,
 	health = math.huge,--500,
 	--flashBaseDuration = 2,
 	shakeBaseDuration = 2,
 }
 
 data{"tree",
-	w = 32*6, h = 32*6,
+	w = 64, h = 64,
 }
 
 data{"crossbow_base",
@@ -72,7 +72,7 @@ data{"crossbow_base_arrow",
 }
 
 data{"root",
-	w = 16*3, h = 32*3,
+	w = 16, h = 32,
 	health = 10
 }
 
@@ -80,13 +80,13 @@ data{"button",
 }
 
 data{"spikes_tier1",
-	w = 32*4, h = 32*4,
+	w = 32, h = 32,
 	health = 5,
 	damage = 50,
 }
 
 data{"spikes_tier2",
-	w = 32*4, h = 32*4,
+	w = 32, h = 32,
 	health = 10,
 	damage = 50,
 }

@@ -79,6 +79,7 @@ end
 --end
 
 function InGameScene:draw(g2d)
+	g2d.scale(GAME.SCALE)
 	Scene.draw(self, g2d) 
 	g2d.setBackgroundColor(rgbToLove(33, 64, 13))
 	

@@ -23,7 +23,7 @@ function Scene:initialize()
 end
 
 ------------------------------ Core API ------------------------------
-local function defaultCollisionFilter() return "slide" end
+local function defaultCollisionFilter() return "cross" end
 
 function Scene:update(dt)
 	State.update(self, dt)
@@ -35,7 +35,7 @@ function Scene:update(dt)
 	for k, obj in ipairs(self.bumpWorld:getItems()) do
 		local targetPos = obj.pos + obj.vel * dt
 		local x, y, cols, len = self.bumpWorld:move(obj, targetPos.x, targetPos.y, 
-				obj.collisionFilter, defaultCollisionFilter)
+				obj.collisionFilter or defaultCollisionFilter)
 		obj:setPosition(x, y)
 		if len > 0 then 
 			for k, col in ipairs(cols) do

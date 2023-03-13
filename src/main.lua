@@ -27,11 +27,7 @@ local GAME_NAME = "GophWar"
 local TARGET_WINDOW_W = -1
 local TARGET_WINDOW_H = -1
 
-function love.load()
-	Game(GAME_NAME, TARGET_WINDOW_W,
-			TARGET_WINDOW_H)
-end
-
+Game(GAME_NAME, TARGET_WINDOW_W, TARGET_WINDOW_H)
 
 --]]
 

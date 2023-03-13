@@ -8,7 +8,7 @@ data{"gopher_base",
 	distOffset = 155*math.sqrt(2),
 	tolerance = 2,
 
-	biteCooldown = 200000000000000000000,--2,
+	biteCooldown = 2,
 	biteCooldownOffset = 0.5, 
 	biteChances = {1, 0.5, 0.25},
 	
@@ -32,7 +32,7 @@ data{"gopher_chonky",
 	distOffset = 155*math.sqrt(2),
 	tolerance = 2,
 
-	biteCooldown = 200000000000000000000,--2
+	biteCooldown = 2,
 	biteCooldownOffset = 0.5, 
 	biteChances = {1, 0.5, 0.25},
 	
@@ -49,8 +49,8 @@ data{"gopher_chonky",
 
 data{"dryad_tree",
 	w = 128, h = 128,
-	health = math.huge,--500,
-	--flashBaseDuration = 2,
+	health = 100,
+	flashBaseDuration = 2,
 	shakeBaseDuration = 2,
 }
 

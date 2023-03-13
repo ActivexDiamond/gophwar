@@ -1,6 +1,6 @@
 local middleclass = require "libs.middleclass"
 
-local AbstractGame = require "core.AbstractGame"
+local AbstractGame = require "cat-paw.engine.AbstractGame"
 
 local Scene = require "cat-paw-mods.Scene"
 local MainMenuScene = require "scenes.MainMenuScene"
@@ -19,11 +19,9 @@ local Game = middleclass("Game", AbstractGame)
 function Game:initialize(...)
 	AbstractGame.initialize(self, ...)
 	math.randomseed(os.time())
-	print("Starting game... " .. self.title)
-	print(string.format("Window size: (%d, %d)", self.windowW, self.windowH))
 	self:_loadAllAssets()
 	
-	self.SCALE = 3
+	self.SCALE = 1
 	self.windowW = self.windowW / self.SCALE
 	self.windowH = self.windowH / self.SCALE  
 	

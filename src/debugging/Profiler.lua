@@ -86,9 +86,9 @@ function Profiler:draw(g2d)
 	if self.showQuickDebug then
 		y = y - LINE_W
 		local ent = GAME:getCurrentState().bumpWorld:countItems()
-		g2d.print("raw-ent-count: " .. ent, x, y)
+		g2d.print("PhysicsObject: " .. ent, x, y)
 		y = y - LINE_W * 2
-		local str = "Objects: %d\nWorldObjects: %d (ItemDrops=%d,Gophers=%d)"
+		local str = "Objects: %d\nWorldObjects: %d (ItemDrops=%d,Other=%d)"
 		g2d.print(str:format(self.objectCount, self.worldObjectCount, self.itemDropCount,
 				self.gopherCount), x, y)
 	end

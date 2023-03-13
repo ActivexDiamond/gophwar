@@ -2,8 +2,7 @@ data{"gopher_spawner",
 	maxAngle = 360,
 	minDistance = 500,
 	maxDistance = 1000,
-	--stageMarkers = {0, 8, 20, 35, 60},
-	stageMarkers = {0, 1, 2, 3, 4},
+	stageMarkers = {0, 8, 20, 35, 60},
 	stageStats = {
 		{--1
 			cooldown = 3,
@@ -22,13 +21,12 @@ data{"gopher_spawner",
 			chance = 0.4,
 			chonkyChance = 0.5,
 		},{--5
-			cooldown = 3.3,--0.7,
-			chance = 0,--0.4,
-			chonkyChance = 0,--0.8,
+			cooldown = 0.7,
+			chance = 0.4,
+			chonkyChance = 0.8,
 		},		
 	},
 	
-
 }
 
 data{"decoration_spawner",

@@ -1,20 +1,17 @@
+local version = require "cat-paw.version"
 local middleclass = require "libs.middleclass"
 
 local Fsm = require "cat-paw.core.patterns.state.Fsm"
-local ApiHooks = require "core.ApiHooks"
+local ApiHooks = require "cat-paw.hooks.LoveHooks"
 
 --local suit = require "libs.suit"
 local Scheduler = require "cat-paw.core.timing.Scheduler"
-
 local EventSystem = require "cat-paw.core.patterns.event.EventSystem"
-
-
 
 ------------------------------ Constructor ------------------------------
 local AbstractGame = middleclass("AbstractGame", Fsm)
 function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 	Fsm.initialize(self)
-		
 	self.title = title or "Untitled Game"
 	love.window.setTitle(title)
 	if targetWindowW == -1 and targetWindowH == -1 then
@@ -26,32 +23,17 @@ function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 		.. "or positive. Current size: " .. targetWindowW .. ", " .. targetWindowH))
 	end
 	self.windowW, self.windowH = love.window.getMode()
-			
+	self:_printToolVersions()
+				
 	self.scheduler = Scheduler()
 	self.eventSystem = EventSystem()
 	ApiHooks.hookHandler(self)
 end
 
 ------------------------------ Constants ------------------------------
---This temp code for GUI scaling, and some configs for the Inventory code from cat-paw.
---This should be placed somewhere more proper.
-AbstractGame.graphics = {}
-do
-	local g = AbstractGame.graphics
-	g.GUI_SCALE = 0.75
-	GUI_SCALE = g.GUI_SCALE				--TODO: Store GUI scale correctly.
-	g.ITEM_W, g.ITEM_H = 48, 48
-
-	g.CELL_PAD_X, g.CELL_PAD_Y = 4, 4	--space between slot-borders and item inside of it.
-	g.CELL_W = g.ITEM_W + g.CELL_PAD_X
-	g.CELL_H = g.ITEM_H + g.CELL_PAD_Y
-	
-	g.INV_PAD = 4						--space between slots
-end
 
 ------------------------------ Core ------------------------------
 function AbstractGame:load(args)
-	print(self.title .. " loaded.")
 end
 
 function AbstractGame:update(dt)
@@ -61,20 +43,34 @@ function AbstractGame:update(dt)
 	self.eventSystem:poll()
 end
 
-function AbstractGame:draw(g2d)
-	Fsm.draw(self, g2d)
-	
---	g.scale(AbstractGame.graphics.GUI_SCALE)
---		if self.loadedWorld then self.loadedWorld:drawGui() end
---	g.scale(1/AbstractGame.graphics.GUI_SCALE)
-end
-
 ------------------------------ Other ------------------------------
 --Wrapper so AbstractGame can be directly passed to ApiHooks. Shouldn't be used anywhere else.
 --If you want to queue stuff, use game:getEventSystem():queue(event)
---TODO: Find a better way to make this class an ApiHooks work nicely.
+--TODO: Find a better way to make this class and ApiHooks work nicely.
 function AbstractGame:queue(...)
 	self.eventSystem:queue(...)
+end
+
+------------------------------ Internals ------------------------------
+function AbstractGame:_printToolVersions()
+	print("Setting stdout's vbuf mode to 'no'. This is needed for some consoles to work properly.")
+	io.stdout:setvbuf("no")
+	print("============================================================")
+	print("Running Lua version:      ", _VERSION)
+	if jit then
+		print("Running Luajit version:   ", jit.version)
+	end
+	print("Running Love2d version: ", love.getVersion())
+	print("Running CatPaw version: ", version)
+	print("\nCurrently using the following 3rd-party libraries (and possibly more):")
+	print("middleclass\tBy Kikito\tSingle inheritance OOP in Lua\t[MIT License]")
+	print("bump\t\tBy Kikito\tSimple platformer physics.\t[MIT License]")
+	print("suit\t\tBy vrld\t\tImGUIs for Lua/Love2D\t\t[MIT License]")
+	print("Huge thanks to (Kikito and vrld) for their wonderful contributions to the community; and for releasing their work under such open licenses!")
+	print("============================================================")	
+	print("Game loaded: " .. self.title)
+	print(string.format("Set window size to: (%d, %d)", self:getWindowSize()))
+	print("============================================================")
 end
 
 ------------------------------ Getters / Setters ------------------------------

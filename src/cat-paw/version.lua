@@ -1,5 +1,7 @@
 local version = {}
 
+------------------------------ Locals ------------------------------
+
 --The chronological ordering of branches, used for comparing versions to check which is newer.
 local branches = {
 	alpha = 1,
@@ -7,30 +9,39 @@ local branches = {
 	prerelease = 3,
 	none = 10,
 }
-	
-version.BRANCH = "dev"
-version.STABILITY_IDENTIFIER = 1
-version.MAJOR = 1
-version.MINOR = 0
-version.HOTFIX = 0
 
-function version.__tostring()
-	if version.HOTFIX > 0 then
-		return string.format("%s-%i.%i.%i_%i", version.BRANCH, version.STABILITY_IDENTIFIER,
-				version.MAJOR, version.MINOR, version.HOTFIX)
-	end
-	return string.format("%s-%i.%i.%i", version.BRANCH, version.STABILITY_IDENTIFIER,
-			version.MAJOR, version.MINOR)
+------------------------------ Constants ------------------------------
+version.VERSION_FILE_PATH = "src/cat-paw/version"
+
+------------------------------ Internals ------------------------------
+function version._readVersionFromFile()
+	local f = assert(io.open(version.VERSION_FILE_PATH, 'r'))
+	version.VERSION_STRING = f:read("*all")
+	f:close()
 end
 
---print(version.getVersionString())
---version.HOTFIX = 0
---print(version.getVersionString())
---version.HOTFIX = 42
---print(version.getVersionString())
---
---version.HOTFIX = 1.2
---print(version.getVersionString())	--Should fail
+------------------------------ Metamethods ------------------------------
+function version.__tostring()
+	return version.VERSION_STRING
+end
 
+------------------------------ Quick Test ------------------------------
+
+--[[
+print(version.getVersionString())
+version.HOTFIX = 0
+print(version.getVersionString())
+version.HOTFIX = 42
+print(version.getVersionString())
+
+version.HOTFIX = 1.2
+print(version.getVersionString())	--Should fail due to invalid HOTFIX.
+--]]
+
+------------------------------ Finalize & Returns ------------------------------
 setmetatable(version, version)
+
+--The version is expected to never change at runtime, so only computing this once on import should be fine.
+version._readVersionFromFile()
+
 return version

@@ -1,4 +1,10 @@
-local jitp = require "jit.p"
+local succ, jitp = pcall(require, "jit.p")
+if not succ then
+	jitp = {
+		start = function() end,
+		stop = function() end,
+	}
+end
 
 local middleclass = require "libs.middleclass"
 local Object = require "core.Object"

@@ -10,14 +10,46 @@ local branches = {
 	none = 10,
 }
 
+--TODO: Find a way to properly just pass a relative path to `io.open`. 
+local VERSION_PATHS = {
+	"version",
+	"cat-paw/version",
+	"src/cat-paw/version",
+	"src/cat-paw/cat-paw/version",
+	"cat-paw/cat-paw/version",
+	"src/cat-paw/cat-paw/version",
+	"src/lib/cat-paw/version",
+	"src/libs/cat-paw/version",
+	"src/engine/cat-paw/version",
+}
 ------------------------------ Constants ------------------------------
-version.VERSION_FILE_PATH = "src/cat-paw/version"
+
+--Both set by `version._readVersionFromFile`.
+version.VERSION_FILE_PATH = nil
+version.VERSION_STRING = nil
 
 ------------------------------ Internals ------------------------------
 function version._readVersionFromFile()
-	local f = assert(io.open(version.VERSION_FILE_PATH, 'r'))
-	version.VERSION_STRING = f:read("*all")
-	f:close()
+	local f, msg, path
+	for i, p in ipairs(VERSION_PATHS) do
+		local succ
+		succ, f = pcall(io.open, p)
+		if f then
+			path = p 
+			break
+		end
+	end
+	
+	if f then
+		version.VERSION_FILE_PATH = path
+		version.VERSION_STRING = f:read("*all")
+		f:close()
+	else
+		version.VERSION_FILE_PATH = "UNKNOWN"
+		version.VERSION_STRING = "UNKNOWN"
+		print("WARNING: Could not locate version file! Checked the following locations:\n" .. 
+				table.concat(VERSION_PATHS,"\n"))
+	end
 end
 
 ------------------------------ Metamethods ------------------------------

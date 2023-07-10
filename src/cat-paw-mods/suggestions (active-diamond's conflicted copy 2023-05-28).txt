@@ -1,0 +1,32 @@
+Change State methods to follow callback conventions.
+Exmaple:
+	enter -> onEnter
+	leave -> onLeave
+	destroy -> onDestroy
+	
+//Change direct references to parent with self.class.super
+//Important: Cannot be used in `initialize`
+Yeah, don't do that. Causes tons of stack overflows.
+Doesn't handle inheritance properly.
+
+change Fsm `add` to `addState` but then how would scenes work? just say addState?
+
+Scene shouldn't include the GAME:getEventSystem.... thingy when added.
+Split scene into PhysicsScene and Scene.
+
+evsys:attach(obj, Event) doesn't work
+	Using Event says must be Event or subclass of it
+	Using EvSomething says isSubc
+	
+Should objs immediately get removed from EvSys on remove from Scene? 
+Currently they stay until GC'ed so all events might be called a few extra times before GC runs.
+
+A single Ev (e.g. MousePress) can run multiple times between a single update.
+If you for example inc a counter then remove your obj from the world (Scene),
+quick consecutive clicks will inc the counter multiple times despite the removal.
+Is this up to the user to deal with or should the engine prevent events passed to an object
+immediately after removal from Scene?
+
+AbstractGame:
+    getWindowSize()
+    getWindowCenter()

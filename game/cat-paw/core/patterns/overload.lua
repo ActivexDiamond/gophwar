@@ -57,31 +57,27 @@ local function checkTypes(args, params)
 		if param == 'optional' then
 			iOff = iOff + 1
 			param = params[i + iOff]
-			if arg == nil then
-				--It happens to be nil, and is optional, so we're good!
-				--Else; check to make sure its the valid type.
-				goto continue
-			end
 		end
 		--print(param, arg, arg.class, arg.isInstanceOf, arg.isSubclassOf)
 
-		--Built-in or defined by overload.
-		if type(param) == 'string' and overload.types[param](arg) then
-			--print("Overload found match for built-in or library-defined argument (string identifier).")
-		--Instance of class (checks inheritance)
-		elseif type(arg) == 'table' and arg.isInstanceOf and
-					arg:isInstanceOf(param) then
-			--print("Overload found match for instance argument (identifier could be instance or class).")
-		--Class (checks inheritance)
- 		elseif type(arg) == 'table' and arg.isSubclassOf and
-				(arg:isSubclassOf(param) or arg == param) then
-			--print("Overload found match for class argument (identifier could be instance or class).")
-		else
-			--print("Overload found no match for argument.")
-			return false
+		--It happens to be nil, and is optional, so we're good! Else; Keep checking.
+		if arg ~= nil then
+			--Built-in or defined by overload.
+			if type(param) == 'string' and overload.types[param](arg) then
+				--print("Overload found match for built-in or library-defined argument (string identifier).")
+			--Instance of class (checks inheritance)
+			elseif type(arg) == 'table' and arg.isInstanceOf and
+						arg:isInstanceOf(param) then
+				--print("Overload found match for instance argument (identifier could be instance or class).")
+			--Class (checks inheritance)
+	 		elseif type(arg) == 'table' and arg.isSubclassOf and
+					(arg:isSubclassOf(param) or arg == param) then
+				--print("Overload found match for class argument (identifier could be instance or class).")
+			else
+				--print("Overload found no match for argument.")
+				return false
+			end
 		end
-		
-		::continue::
 		i = i + 1
 	end
 	--Check for overflowing args.

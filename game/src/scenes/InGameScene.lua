@@ -39,7 +39,6 @@ function InGameScene:initialize(...)
 	tree:setPosition(treeX, treeY)
 	tree:setSpriteOffset(WorldObject.SPRITE_CENTER)
 	tree:setDepth(1)
-	tree.rect=true
 	self:addObject(tree)
 	self.dryadTree = tree
 	

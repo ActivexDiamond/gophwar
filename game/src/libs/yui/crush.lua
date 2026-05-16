@@ -246,27 +246,24 @@ local function scandeps(manifest, mode, deps)
     end
 
     for name,url in pairs(def) do
-        if type(url) == 'function' then
-            goto skip  -- ignore functions
-        end
-
-        if type(url) ~= 'string' then
-            error("[string \""..manifest.."\"]: "..name..": git repository URL must be a 'string'.")
-        end
-
-        for i in ipairs(deps) do
-            if name == deps[i].name then
-                if mode == 'skipdups' then
-                    goto skip
-                end
-
-                error("[string \""..manifest.."\"]: "..name..": Duplicate dependency.")
-            end
-        end
-
-        deps[#deps+1] = { name = name, url = url }
-
-        ::skip::
+        if type(url) ~= 'function' then
+	        if type(url) ~= 'string' then
+    	        error("[string \""..manifest.."\"]: "..name..": git repository URL must be a 'string'.")
+	        end
+		
+			local doSkip = false
+	        for i in ipairs(deps) do
+	            if name == deps[i].name then
+	                if mode == 'skipdups' then
+	                    doSkip = true
+	                end
+	            end
+	        end
+			
+			if not doSkip then
+		        deps[#deps+1] = { name = name, url = url }
+		    end
+		end
     end
 
     return deps

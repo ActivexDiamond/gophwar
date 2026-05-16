@@ -74,26 +74,18 @@ function dopack(o, i, mode)
 
     -- Attempt to encode as array.
     for k,v in ipairs(o) do
-        if mode == 'skip-functions' and type(v) == 'function' then
-            goto skip
+        if not (mode == 'skip-functions' and type(v) == 'function') then
+        	fields[#fields + 1] = ("%s%s"):format(is, vals(v, i, mode))
         end
-
-        fields[#fields + 1] = ("%s%s"):format(is, vals(v, i, mode))
-
-    ::skip:: seen[k] = true
+    	seen[k] = true
     end
 
     -- Process leftover fields.
     for k,v in pairs(o) do
-        if seen[k] or (mode == 'skip-functions' and type(v) == 'function') then
-            goto skip
+        if not (seen[k] or (mode == 'skip-functions' and type(v) == 'function')) then
+        	local f = ("%s%s = %s"):format(is, keys(k, i, mode), vals(v, i, mode))
+        	fields[#fields + 1] = f
         end
-
-        local f = ("%s%s = %s"):format(is, keys(k, i, mode), vals(v, i, mode))
-
-        fields[#fields + 1] = f
-
-    ::skip::
     end
 
     return "{\n"..table.concat(fields, ",\n").."\n"..lastis.."}"

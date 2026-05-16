@@ -97,13 +97,13 @@ end
 ------------------------------ Internals ------------------------------
 function Scene:_processQueuedObjects()
 	for obj, _ in pairs(self.objectsToRemove) do
-		if not self.objects[obj] then goto continue end
-		self.objects[obj] = nil
-		if self.bumpWorld:hasItem(obj) then
-			self.bumpWorld:remove(obj)
+		if self.objects[obj] then
+			self.objects[obj] = nil
+			if self.bumpWorld:hasItem(obj) then
+				self.bumpWorld:remove(obj)
+			end
+			GAME:getEventSystem():queue(EvSceneObjectRemove(self, obj))
 		end
-		GAME:getEventSystem():queue(EvSceneObjectRemove(self, obj))
-		::continue::
 	end
 	--TODO: Check if removing the objects is faster than resetting the table.
 	self.objectsToRemove = {}

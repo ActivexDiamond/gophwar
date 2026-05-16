@@ -16,17 +16,22 @@ function ItemDrop:initialize(id, scene, x, y, amount)
 	end
 	self.useInvSpr = true
 	self.amount = amount
+	
+	--FIXME: Removal is queued, so this hack is needed.
+	self.wasPickedUp = false
 end
 
 ------------------------------ Core API ------------------------------
 
 ------------------------------ Callbacks ------------------------------
 ItemDrop[EvMousePress] = function(self, e)
+	if self.wasPickedUp then return end
 	local mv = brinevector(love.mouse.getPosition())
 	local dist = (self:getCenter() - mv):getLength()
 	if dist <= self.w then
 		self.scene:getInventoryManager():addItem(self.ID, self.amount)
 		self.scene:removeObject(self)
+		self.wasPickedUp = true
 		love.audio.play(SFX.pickup)
 	end
 end

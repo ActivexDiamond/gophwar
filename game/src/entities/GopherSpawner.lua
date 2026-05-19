@@ -8,7 +8,7 @@ local function spawn(dt, percentage, self, chance)
 	if math.random() < self.stage.chance then return end
 	local pos = brinevector(1, 1)
 	pos.angle = math.random(0, self.maxAngle)
-	pos.length = math.random(500, 1000)
+	pos.length = math.random(self.minDistance, self.maxDistance)
 	local x = pos.x + GAME.windowW * 0.5
 	local y = pos.y + GAME.windowH * 0.5
 	local id

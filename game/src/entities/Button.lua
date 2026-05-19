@@ -10,7 +10,7 @@ local EvMousePress = require "cat-paw.core.patterns.event.mouse.EvMousePress"
 local Button = middleclass("Button", WorldObject)
 function Button:initialize(id, scene, x, y, recipe)
 	WorldObject.initialize(self, id, scene, x, y)
-	self.w, self.h = 32, 32
+	self.w, self.h = 64, 64
 	self.useInvSpr = false
 	self.recipe = recipe
 	self.ID = self.recipe.result
@@ -25,7 +25,7 @@ end
 
 function Button:update(dt)
 	WorldObject.update(self, dt)
-	if not love.mouse.isDown(2) then return end
+	if not love.mouse.isDown(1, 2, 3) then return end
 	local mv = brinevector(love.mouse.getPosition())
 	local dist = (self:getCenter() - mv):getLength()
 	if dist <= self.w then

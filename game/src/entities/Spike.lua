@@ -19,7 +19,6 @@ end
 ------------------------------ Core API ------------------------------
 function Spike:update(dt)
 	PhysicsObject.update(self, dt)
-	print"xxx"
 end
 
 ------------------------------ Interactions ------------------------------
@@ -34,7 +33,6 @@ end
 
 ------------------------------ Callbacks ------------------------------
 function Spike:onCollision(other)
-	print "colis"
 	if other:isInstanceOf(Gopher) then
 		print "hitting gopher"
 		self.hitGophers[other] = true

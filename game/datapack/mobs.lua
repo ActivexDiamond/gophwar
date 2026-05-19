@@ -13,13 +13,13 @@ data{"gopher_base",
 	biteChances = {1, 0.5, 0.25},
 	
 	drops = {
-		compost = 0.5,
-		essence = 0.2, 
+		compost = 0.6,
+		essence = 0.42, 
 	},
 	wiggleRange = math.pi * 0.03,
 	wiggleDuration = 0.2,
 	drop = "essence_base",
-	dropChance = 0.3,
+	dropChance = 0.42,
 }
 
 data{"gopher_chonky",
@@ -29,7 +29,7 @@ data{"gopher_chonky",
 	damage = 3,
 	health = 22,
 	
-	distOffset = 155*math.sqrt(2),
+	distOffset = 64,
 	tolerance = 2,
 
 	biteCooldown = 2,
@@ -38,13 +38,13 @@ data{"gopher_chonky",
 	
 	drops = {
 		compost = 0.5,
-		essence = 0.2, 
+		essence = 0.42, 
 	},
 	wiggleRange = math.pi * 0.03,
 	wiggleDuration = 0.2,
 	
 	drop = "essence_chonky",
-	dropChance = 0.3,
+	dropChance = 0.42,
 }
 
 data{"dryad_tree",

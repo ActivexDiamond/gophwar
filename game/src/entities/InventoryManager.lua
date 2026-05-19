@@ -24,7 +24,7 @@ function InventoryManager:initialize(scene)
 		wood_stick = 0,
 	}
 
-	local y = (GAME.windowH - self.slotSize) - 4 
+	local y = (GAME.windowH - self.slotSize) - 36
 	local x = self.slotSize * 9
 		
 	self.scene:addObject(Button("spikes_tier1", self.scene, x, y, {
@@ -35,7 +35,7 @@ function InventoryManager:initialize(scene)
 		amount = 5,
 	}))
 	
-	x = self.slotSize * 10
+	x = self.slotSize * 12
 	self.scene:addObject(Button("spikes_tier2", self.scene, x, y, {
 		essence_base = 0,
 		essence_chonky = 2,
@@ -86,10 +86,11 @@ end
 local lastPlace = love.timer.getTime()
 function InventoryManager:update(dt)
 	Object.update(self, dt)
-	if not love.mouse.isDown(2) then return end
+	if not love.mouse.isDown(1, 2, 3) then return end
 	if love.timer.getTime() - lastPlace > 0.5 then
 		if not MOUSE_ITEM then return end
 		local x, y = love.mouse.getPosition()
+		if y > (GAME.windowH - self.slotSize * 3) then return end
 		local obj = Spike(MOUSE_ITEM, self.scene, x, y)
 		self.scene:addObject(obj)
 		MOUSE_ITEM_COUNT = MOUSE_ITEM_COUNT - 1

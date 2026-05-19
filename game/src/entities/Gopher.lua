@@ -19,7 +19,7 @@ function Gopher:initialize(...)
  	self.distanceToRoot = self:_computeDistanceToRoot()
  	self.originalPosition = self.pos:getCopy()
 	self.wiggleCounter = 0
-		
+	self.alive = true
 --	self.wiggleTweens = {
 --		tween.new(2, self, {rotation = math.pi*0.5}),
 --		tween.new(2, self, {rotation = -math.pi*0.5}),
@@ -115,6 +115,7 @@ end
 
 ------------------------------ Callbacks ------------------------------
 function Gopher:onDeath()
+	self.alive = false
 	love.audio.play(SFX.gopher_death)
 	self.scene:removeObject(self)
 	GAME:getScheduler():cancel(self.wiggle)	
@@ -153,6 +154,7 @@ function Gopher:_attemptBite()
 	local offset = math.random(-self.biteCooldownOffset, self.biteCooldownOffset)
 	local cooldown = self.biteCooldown + offset
 	GAME:getScheduler():callAfter(cooldown, function(dt, percentage, self)
+		if not self.alive then return end
 		love.audio.play(SFX.gopher_eat)
 		self.bitesTaken = self.bitesTaken + 1
 		self.scene:getDryadTree():takeDamage(self.damage)

@@ -17,7 +17,7 @@ function AbstractGame:initialize(title, targetWindowW, targetWindowH)
 	if targetWindowW == -1 and targetWindowH == -1 then
 		love.window.setFullscreen(true)
 	elseif targetWindowW > 0 and targetWindowH > 0 then
-		love.window.setMode(targetWindowW, targetWindowH)
+		love.window.updateMode(targetWindowW, targetWindowH)
 	else
 		error(string.format("Invalid window size. w/h must both be -1, for fullscreen,"
 		.. "or positive. Current size: " .. targetWindowW .. ", " .. targetWindowH))

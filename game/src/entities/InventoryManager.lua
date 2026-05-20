@@ -26,35 +26,33 @@ function InventoryManager:initialize(scene)
 
 	local y = (GAME.windowH - self.slotSize) - 36
 	local x = self.slotSize * 9
-		
-	self.scene:addObject(Button("spikes_tier1", self.scene, x, y, {
+	
+	self.spikesTier1 = Button("spikes_tier1", self.scene, x, y, {
 		essence_base = 2,
 		essence_chonky = 0,
 		wood_stick = 5,
 		result = "spikes_tier1",
 		amount = 5,
-	}))
+	})
+	self.scene:addObject(self.spikesTier1)
 	
 	x = self.slotSize * 12
-	self.scene:addObject(Button("spikes_tier2", self.scene, x, y, {
+	self.spikesTier2 = Button("spikes_tier2", self.scene, x, y, {
 		essence_base = 0,
 		essence_chonky = 2,
 		wood_stick = 5,
 		result = "spikes_tier2",
 		amount = 5,
-	}))
-	local bTurret1
-	local bTurret2
-	
+	})
+	self.scene:addObject(self.spikesTier2)
 end
 
 ------------------------------ Core API ------------------------------
-
 function InventoryManager:draw(g2d)
 	g2d.push('all')
 	g2d.scale(2)
 	local x = self.slotSize
-	local y = (GAME.windowH / 2 - self.slotSize) - 4 
+	local y = (love.graphics.getHeight() / 2 - self.slotSize) - 4 
 	
 	local w = x * 4 - x
 	g2d.setColor(0.3, 0.3, 0.3, 0.7)
@@ -86,6 +84,9 @@ end
 local lastPlace = love.timer.getTime()
 function InventoryManager:update(dt)
 	Object.update(self, dt)
+	self.spikesTier1.pos.y = (love.graphics.getHeight() - self.slotSize) - 36
+	self.spikesTier2.pos.y = (love.graphics.getHeight() - self.slotSize) - 36
+
 	if not love.mouse.isDown(1, 2, 3) then return end
 	if love.timer.getTime() - lastPlace > 0.5 then
 		if not MOUSE_ITEM then return end

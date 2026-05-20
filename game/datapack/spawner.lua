@@ -2,7 +2,7 @@ data{"gopher_spawner",
 	maxAngle = 360,
 	minDistance = 500,
 	maxDistance = 700,
-	stageMarkers = {0, 5, 12, 22, 32},
+	stageMarkers = {0, 5, 20, 45, 70},
 	stageStats = {
 		{--1
 			cooldown = 2,
